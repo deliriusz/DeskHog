@@ -2,6 +2,8 @@
 
 This utility automatically detects and flashes DeskHog firmware to multiple ESP32-S3 boards as they are connected.
 
+> **Current limitation:** use only PlatformIO-managed mode. The explicit-firmware option writes the application image at bootloader offset `0x0`. Do not use it until the script derives the offset from `partitions.csv`. See [Build, test, and release](docs/build-test-release.md#flash-and-recovery).
+
 ## Features
 
 - Automatically detects new ESP32-S3 Feather boards when plugged in
@@ -38,7 +40,7 @@ Or if you made it executable:
 ### Command Line Options
 
 - `-v, --verbose`: Show detailed flashing output
-- `-f, --firmware <path>`: Use a specific firmware file instead of building
+- `-f, --firmware <path>`: Currently unsafe; do not use
 - `-r, --reset`: Clear the list of flashed boards and exit
 
 ### Examples
@@ -53,12 +55,7 @@ Or if you made it executable:
    python multi_flash.py -v
    ```
 
-3. **Flash a specific firmware file:**
-   ```bash
-   python multi_flash.py -f .pio/build/adafruit_feather_esp32s3_reversetft/firmware.bin
-   ```
-
-4. **Reset the flashed board memory:**
+3. **Reset the flashed board memory:**
    ```bash
    python multi_flash.py -r
    ```
@@ -67,7 +64,7 @@ Or if you made it executable:
 
 1. The script continuously scans for connected USB devices
 2. When it detects an ESP32-S3 board (by VID/PID or description), it checks if it's already been flashed
-3. New boards are automatically flashed using PlatformIO's upload command
+3. New boards are automatically flashed using PlatformIO's normal upload command
 4. Successfully flashed boards are remembered to prevent re-flashing
 5. The script handles multiple boards simultaneously using threading
 6. A real-time display shows:
@@ -91,7 +88,7 @@ The script identifies ESP32-S3 boards by:
 - Try verbose mode to see what devices are being detected
 
 ### Flashing fails
-- The board might need to be put in bootloader mode manually (hold D0 while pressing Reset)
+- The board might need the manual bootloader sequence documented in [Hardware and power](docs/hardware-and-power.md#reset-and-bootloader-recovery)
 - Check that PlatformIO is properly installed
 - Ensure you're running from the DeskHog project root directory
 

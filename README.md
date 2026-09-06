@@ -60,7 +60,7 @@ All of the example apps were built in 24 hours at [a PostHog hackathon](https://
 
 ## Developing for DeskHog
 
-Review [tech-details.md](tech-details.md) for info on architecture, libraries and key components used in this project.
+Review the [agent reference](AGENTS.md) for the architecture, libraries, and focused guides to each major component.
 
 ## Troubleshooting
 
@@ -80,7 +80,7 @@ LLMs often struggle with multi-threaded embedded systems. DeskHog’s firmware h
 
 If you're looking to [get started](https://posthog.com/tutorials/deskhog-claude-tutorial), we recommend using [Claude Code](https://www.anthropic.com/claude-code) with [Visual Studio Code](https://code.visualstudio.com/) and the [PlatformIO extension](https://platformio.org/install/ide?install=vscode). They work well together and you can build all sorts of things with natural language.
 
-Use `tech-details.md` to give your agent broad context on the device. Still, even with that you should bear in mind the following advice:
+Use [`AGENTS.md`](AGENTS.md) to give your agent broad context on the device. Still, even with that you should bear in mind the following advice:
 
 - You should encourage AI to follow existing patterns: use`EventQueue` for cross-core messaging and update the UI only on the UI task.
 - Flag any AI suggestions that touch the UI from the wrong core.
@@ -95,13 +95,8 @@ If you want to turn the device off, hold ● + ▼ for two seconds. The device w
 To wake the device, press the reset tab on the left. 
 
 ## UI progress
-- Status card: working
-- WiFi provisioning card with QR Code: working
-- Friend card to give you (mild) reassurance: working
-- Numeric card for Big Number insights: working
-- Funnel card: needs a redesign; probably should be horizontal layout instead, won't display more than three steps right now
-- Line graph card: broken, not properly scaling larger data sets, probably fine if you have an insight scoped between 7-30 days
-- Other insights: not yet supported
+
+The firmware includes provisioning, local, game, and PostHog insight cards. The maintained list of card types is in [Cards](docs/cards.md), and current insight renderer support and limitations are in [PostHog insights](docs/posthog-insights.md).
 
 ## Request for PRs
 
