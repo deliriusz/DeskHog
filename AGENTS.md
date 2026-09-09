@@ -53,3 +53,30 @@ The canonical build, upload, monitoring, test, and release instructions are in [
 - For concurrent or UI changes, verify execution context, synchronization, queue-full behavior, lifetime, and stack/heap impact.
 - For network and storage changes, review secret exposure and effects on persisted device state.
 - For asset changes, inspect both source and regenerated output and check firmware size.
+
+## Additional project context
+
+- This is an ESP32-S3-based project that displays PostHog insights on a 240×135 TFT screen.
+- Device details are available in [platformio.ini](platformio.ini).
+
+## Hardware implementation
+
+- Do not reinvent pin names or redefine them. Refer to the board definition's pins file whenever a pin is needed:
+  `~/.platformio/packages/framework-arduinoespressif32/variants/adafruit_feather_esp32s3_reversetft/pins_arduino.h`
+
+## Code generation
+
+- Before generating code, carefully consider the existing project context, propose a plan for the code being written, and obtain clarification and approval to proceed when needed.
+- Writing code should follow due consideration and planning rather than being an immediate response.
+- Follow the existing C++/Arduino naming convention documented above: use `camelCase` for variables and methods. This supersedes the former Cursor rule's `snakeCase` wording.
+- Keep concerns separated; for example, do not put network code into UI components.
+
+## Troubleshooting
+
+- When troubleshooting, writing new code is the final step, not the first. Do not randomly try new code.
+- Consider up to five root causes of a failure, then narrow them down to the most likely one or two.
+- Only after providing a detailed remediation plan should new code be written.
+- Do not invent functions or properties on external libraries that do not actually exist.
+- Switching away from the Arduino framework is not a viable strategy.
+- If USB operations falter, this command can reset the whole USB subsystem:
+  `sudo pkill -f "usb|serial|uart"; sudo pkill -f tty; sudo killall -STOP usbd; sleep 2; sudo killall -CONT usbd`
