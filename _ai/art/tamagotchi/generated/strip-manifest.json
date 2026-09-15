@@ -1,0 +1,2807 @@
+{
+  "schemaVersion": 1,
+  "expectedGroupCount": 17,
+  "expectedFrameCount": 45,
+  "target32FrameCount": 44,
+  "target16FrameCount": 1,
+  "estimatedArgb8888Bytes": 181248,
+  "generationTool": {
+    "name": "OpenAI built-in image-generation tool",
+    "modelVersion": "gpt-image 2.0",
+    "generationDate": "2026-09-15",
+    "provenance": "One built-in reference-based generation was used for each accepted source strip. Accepted source PNGs are preserved without source normalization."
+  },
+  "creationDate": "2026-09-15",
+  "phase3Manifest": {
+    "relativePath": "_ai/art/tamagotchi/references/reference-manifest.json",
+    "sha256": "2589fa6d70ca9e2f3fc66075b437bab518b87b5c58de9d03f812da09338c0598"
+  },
+  "groups": [
+    {
+      "group": "tamagotchi_egg",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_egg_strip.png",
+      "sha256": "a0c6b228e5f776eae8ceb39c675776fb50e176cb0cfcaff37665407382add117",
+      "byteSize": 386077,
+      "width": 1774,
+      "height": 887,
+      "colorMode": "RGBA",
+      "frameCount": 2,
+      "layout": "horizontal",
+      "frameWidth": 887,
+      "frameHeight": 887,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 887
+        },
+        {
+          "index": 1,
+          "x0": 887,
+          "x1": 1774
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "loop",
+      "frameIntent": [
+        "intact upright egg tilted slightly left",
+        "same intact egg tilted slightly right on same base/center"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "stylePaletteOnly"
+        }
+      ],
+      "promptId": "EGG-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-5b9a8390-b0dd-4b48-83c6-854d901878a8.png",
+        "generationOutputHint": null,
+        "referenceRole": "child style/palette only"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 17665,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 138,
+            "top": 18,
+            "rightInclusive": 884,
+            "bottomInclusive": 781,
+            "width": 747,
+            "height": 764
+          },
+          {
+            "left": 27,
+            "top": 19,
+            "rightInclusive": 658,
+            "bottomInclusive": 886,
+            "width": 632,
+            "height": 868
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": null,
+            "lightDirection": null,
+            "visualCenterApproxMappedTo32": null,
+            "lowestVisiblePixelApproxMappedTo32": null,
+            "reason": "No pet identity anchor applies to this egg/mess source cell."
+          },
+          {
+            "facing": null,
+            "lightDirection": null,
+            "visualCenterApproxMappedTo32": null,
+            "lowestVisiblePixelApproxMappedTo32": null,
+            "reason": "No pet identity anchor applies to this egg/mess source cell."
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_idle",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_idle_strip.png",
+      "sha256": "419bfc28da498adb0e6032ff6efbb2faeffd9b4b5892afa8df571580f93df9f9",
+      "byteSize": 720346,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "loop",
+      "frameIntent": [
+        "canonical alert neutral",
+        "very small blink/lower-body bob",
+        "gentle return/rise close to frame 0"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-IDLE-v2",
+      "revision": 2,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-82fe90ef-7240-4756-959b-549f7b4b2ff9.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 33349,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 23,
+            "top": 37,
+            "rightInclusive": 709,
+            "bottomInclusive": 704,
+            "width": 687,
+            "height": 668
+          },
+          {
+            "left": 3,
+            "top": 15,
+            "rightInclusive": 717,
+            "bottomInclusive": 691,
+            "width": 715,
+            "height": 677
+          },
+          {
+            "left": 1,
+            "top": 39,
+            "rightInclusive": 685,
+            "bottomInclusive": 683,
+            "width": 685,
+            "height": 645
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.18,
+            "lowestVisiblePixelApproxMappedTo32": 31.12,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.91,
+            "lowestVisiblePixelApproxMappedTo32": 30.54,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.16,
+            "lowestVisiblePixelApproxMappedTo32": 30.19,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_idle",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_idle_strip.png",
+      "sha256": "5895da69648d75ae5fa34440ddd13e20ab932751d84efdd660e4e6e190d5ee60",
+      "byteSize": 861992,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "loop",
+      "frameIntent": [
+        "canonical adult alert neutral",
+        "subtle breath/blink",
+        "gentle return close to frame 0"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-IDLE-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-843a5282-1418-41e4-9a3b-599647a9713f.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 37083,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 92,
+            "top": 17,
+            "rightInclusive": 723,
+            "bottomInclusive": 677,
+            "width": 632,
+            "height": 661
+          },
+          {
+            "left": 17,
+            "top": 25,
+            "rightInclusive": 709,
+            "bottomInclusive": 679,
+            "width": 693,
+            "height": 655
+          },
+          {
+            "left": 1,
+            "top": 39,
+            "rightInclusive": 677,
+            "bottomInclusive": 675,
+            "width": 677,
+            "height": 637
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 18.01,
+            "lowestVisiblePixelApproxMappedTo32": 29.92,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.04,
+            "lowestVisiblePixelApproxMappedTo32": 30.01,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 14.98,
+            "lowestVisiblePixelApproxMappedTo32": 29.83,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_feed",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_feed_strip.png",
+      "sha256": "18b6fea18c3db0d2b5d94416b820df6006dee5cb151ecd5f46301c27256d2659",
+      "byteSize": 739550,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "anticipates tiny generic food morsel beside snout",
+        "leans/bites with morsel contacting mouth",
+        "upright satisfied chew/swallow; morsel reduced or gone"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-FEED-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-d53f370b-4e58-412a-b530-74259de5c6ea.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 38980,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 17,
+            "top": 27,
+            "rightInclusive": 706,
+            "bottomInclusive": 723,
+            "width": 690,
+            "height": 697
+          },
+          {
+            "left": 9,
+            "top": 89,
+            "rightInclusive": 683,
+            "bottomInclusive": 675,
+            "width": 675,
+            "height": 587
+          },
+          {
+            "left": 1,
+            "top": 68,
+            "rightInclusive": 623,
+            "bottomInclusive": 703,
+            "width": 623,
+            "height": 636
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.98,
+            "lowestVisiblePixelApproxMappedTo32": 31.96,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.29,
+            "lowestVisiblePixelApproxMappedTo32": 29.83,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 13.79,
+            "lowestVisiblePixelApproxMappedTo32": 31.07,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_feed",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_feed_strip.png",
+      "sha256": "571f22b4940e10d48e3b38c2dff3fe8f273e485ad060c67571bfedfaab469c53",
+      "byteSize": 813695,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "anticipates same tiny generic food morsel beside snout",
+        "leans/bites with morsel contacting mouth",
+        "upright satisfied chew/swallow; morsel reduced or gone"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-FEED-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-a55b5ff8-4b4e-4ff1-8164-ffffb083ce0a.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 42042,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 0,
+            "top": 31,
+            "rightInclusive": 722,
+            "bottomInclusive": 705,
+            "width": 723,
+            "height": 675
+          },
+          {
+            "left": 5,
+            "top": 31,
+            "rightInclusive": 723,
+            "bottomInclusive": 700,
+            "width": 719,
+            "height": 670
+          },
+          {
+            "left": 1,
+            "top": 35,
+            "rightInclusive": 722,
+            "bottomInclusive": 697,
+            "width": 722,
+            "height": 663
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.96,
+            "lowestVisiblePixelApproxMappedTo32": 31.16,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.09,
+            "lowestVisiblePixelApproxMappedTo32": 30.94,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.98,
+            "lowestVisiblePixelApproxMappedTo32": 30.81,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_play",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_play_strip.png",
+      "sha256": "c30059c3573a99b04a7b56ff730893fe2a18724477f38f07b1657ff3c9e956fe",
+      "byteSize": 802701,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "playful ready/lean with one tiny ball",
+        "contact/hop or paw motion with ball",
+        "happy recovery with ball settled nearby"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-PLAY-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-b8c69a76-59bf-4558-8bd8-1bf5989d9315.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 45936,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 81,
+            "top": 37,
+            "rightInclusive": 720,
+            "bottomInclusive": 683,
+            "width": 640,
+            "height": 647
+          },
+          {
+            "left": 9,
+            "top": 79,
+            "rightInclusive": 717,
+            "bottomInclusive": 695,
+            "width": 709,
+            "height": 617
+          },
+          {
+            "left": 25,
+            "top": 96,
+            "rightInclusive": 705,
+            "bottomInclusive": 653,
+            "width": 681,
+            "height": 558
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 17.7,
+            "lowestVisiblePixelApproxMappedTo32": 30.19,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.04,
+            "lowestVisiblePixelApproxMappedTo32": 30.72,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.13,
+            "lowestVisiblePixelApproxMappedTo32": 28.86,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_play",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_play_strip.png",
+      "sha256": "2b417ecc960aa4dce6b70996e93992ff3e0ee06ccd936189e59ab1ccf114d983",
+      "byteSize": 908134,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "adult ready/lean with same tiny ball",
+        "contact/hop or paw motion with ball",
+        "happy recovery with ball settled nearby"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-PLAY-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-fcb4d4e7-cd28-431e-81a3-b8bada5dece5.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 42347,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 21,
+            "top": 41,
+            "rightInclusive": 721,
+            "bottomInclusive": 699,
+            "width": 701,
+            "height": 659
+          },
+          {
+            "left": 41,
+            "top": 35,
+            "rightInclusive": 723,
+            "bottomInclusive": 723,
+            "width": 683,
+            "height": 689
+          },
+          {
+            "left": 1,
+            "top": 45,
+            "rightInclusive": 717,
+            "bottomInclusive": 703,
+            "width": 717,
+            "height": 659
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.4,
+            "lowestVisiblePixelApproxMappedTo32": 30.9,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.88,
+            "lowestVisiblePixelApproxMappedTo32": 31.96,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.87,
+            "lowestVisiblePixelApproxMappedTo32": 31.07,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_clean",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_clean_strip.png",
+      "sha256": "a2cac4e9941db4546eaa56162e419616968efd0c3dff01b0f11b80035fdd2fee",
+      "byteSize": 814351,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "one small bubble/sparkle appears",
+        "two or three localized bubbles/sparkles pass body",
+        "clean pleased child with final small sparkle"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-CLEAN-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-727f548b-8185-4fc4-a621-9256ea3c1648.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 43219,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 17,
+            "top": 19,
+            "rightInclusive": 723,
+            "bottomInclusive": 678,
+            "width": 707,
+            "height": 660
+          },
+          {
+            "left": 9,
+            "top": 21,
+            "rightInclusive": 709,
+            "bottomInclusive": 682,
+            "width": 701,
+            "height": 662
+          },
+          {
+            "left": 1,
+            "top": 32,
+            "rightInclusive": 703,
+            "bottomInclusive": 681,
+            "width": 703,
+            "height": 650
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.35,
+            "lowestVisiblePixelApproxMappedTo32": 29.97,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.87,
+            "lowestVisiblePixelApproxMappedTo32": 30.14,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.56,
+            "lowestVisiblePixelApproxMappedTo32": 30.1,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_clean",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_clean_strip.png",
+      "sha256": "7af3d60826dc92c0effa68703ed213e9a3b7267fd420b8907e2d01388e01ab6b",
+      "byteSize": 733539,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "one small bubble/sparkle appears",
+        "two or three localized bubbles/sparkles pass body",
+        "clean pleased adult with final small sparkle"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-CLEAN-v2",
+      "revision": 2,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-74083350-4f6b-4115-8a8b-1d4bb0d098d1.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 37971,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 17,
+            "top": 21,
+            "rightInclusive": 699,
+            "bottomInclusive": 697,
+            "width": 683,
+            "height": 677
+          },
+          {
+            "left": 1,
+            "top": 54,
+            "rightInclusive": 683,
+            "bottomInclusive": 689,
+            "width": 683,
+            "height": 636
+          },
+          {
+            "left": 0,
+            "top": 55,
+            "rightInclusive": 688,
+            "bottomInclusive": 648,
+            "width": 689,
+            "height": 594
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.82,
+            "lowestVisiblePixelApproxMappedTo32": 30.81,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.12,
+            "lowestVisiblePixelApproxMappedTo32": 30.45,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.2,
+            "lowestVisiblePixelApproxMappedTo32": 28.64,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_rest",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_rest_strip.png",
+      "sha256": "47e230d6632721d890e873a46e69d4e0cda55ff8682f853cd580f696ae56baa8",
+      "byteSize": 634057,
+      "width": 1774,
+      "height": 887,
+      "colorMode": "RGBA",
+      "frameCount": 2,
+      "layout": "horizontal",
+      "frameWidth": 887,
+      "frameHeight": 887,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 887
+        },
+        {
+          "index": 1,
+          "x0": 887,
+          "x1": 1774
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "child lowers onto same floor plane, eyes closing",
+        "settled compact breathing pose with closed eyes"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-REST-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-5fb9d5ac-5fa2-4d03-bd78-82465b404a31.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 33576,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 21,
+            "top": 23,
+            "rightInclusive": 886,
+            "bottomInclusive": 828,
+            "width": 866,
+            "height": 806
+          },
+          {
+            "left": 12,
+            "top": 88,
+            "rightInclusive": 864,
+            "bottomInclusive": 848,
+            "width": 853,
+            "height": 761
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.36,
+            "lowestVisiblePixelApproxMappedTo32": 29.87,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.8,
+            "lowestVisiblePixelApproxMappedTo32": 30.59,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_rest",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_rest_strip.png",
+      "sha256": "e38444fc94d1a86273a0c7dcd0bc6dd5167ab0e6bd639028372fc6d8c53caaaf",
+      "byteSize": 713724,
+      "width": 1774,
+      "height": 887,
+      "colorMode": "RGBA",
+      "frameCount": 2,
+      "layout": "horizontal",
+      "frameWidth": 887,
+      "frameHeight": 887,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 887
+        },
+        {
+          "index": 1,
+          "x0": 887,
+          "x1": 1774
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "adult lowers onto same floor plane, eyes closing",
+        "settled compact breathing pose with closed eyes"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-REST-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-04c99088-1a4b-49fb-a684-cc9ef3fd30b2.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 39799,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 41,
+            "top": 65,
+            "rightInclusive": 884,
+            "bottomInclusive": 852,
+            "width": 844,
+            "height": 788
+          },
+          {
+            "left": 65,
+            "top": 112,
+            "rightInclusive": 860,
+            "bottomInclusive": 876,
+            "width": 796,
+            "height": 765
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.69,
+            "lowestVisiblePixelApproxMappedTo32": 30.74,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.69,
+            "lowestVisiblePixelApproxMappedTo32": 31.6,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_sick",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_sick_strip.png",
+      "sha256": "1ffc81d57c3aef30e2ffb1acba530c58421c96defc10e0cbad06547e47132c03",
+      "byteSize": 764495,
+      "width": 1774,
+      "height": 887,
+      "colorMode": "RGBA",
+      "frameCount": 2,
+      "layout": "horizontal",
+      "frameWidth": 887,
+      "frameHeight": 887,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 887
+        },
+        {
+          "index": 1,
+          "x0": 887,
+          "x1": 1774
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "loop",
+      "frameIntent": [
+        "child visibly slumped with uncomfortable eyes/mouth",
+        "tiny weak sway/breath while slumped"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-SICK-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-25b19e71-2a6d-4567-b8a1-fa1875c05e0c.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 32919,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 46,
+            "top": 21,
+            "rightInclusive": 886,
+            "bottomInclusive": 830,
+            "width": 841,
+            "height": 810
+          },
+          {
+            "left": 25,
+            "top": 72,
+            "rightInclusive": 858,
+            "bottomInclusive": 886,
+            "width": 834,
+            "height": 815
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.81,
+            "lowestVisiblePixelApproxMappedTo32": 29.94,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.93,
+            "lowestVisiblePixelApproxMappedTo32": 31.96,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_sick",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_sick_strip.png",
+      "sha256": "36d3859a8153ef4ee3c1b7d0ab5649b79b5e6bbc264421a096f3ee32c982a94f",
+      "byteSize": 684153,
+      "width": 1774,
+      "height": 887,
+      "colorMode": "RGBA",
+      "frameCount": 2,
+      "layout": "horizontal",
+      "frameWidth": 887,
+      "frameHeight": 887,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 887
+        },
+        {
+          "index": 1,
+          "x0": 887,
+          "x1": 1774
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "loop",
+      "frameIntent": [
+        "adult visibly slumped with uncomfortable eyes/mouth",
+        "tiny weak sway/breath while slumped"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-SICK-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-8d396e67-713b-434f-9e22-1205a6a9a414.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 30441,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 0,
+            "top": 0,
+            "rightInclusive": 886,
+            "bottomInclusive": 840,
+            "width": 887,
+            "height": 841
+          },
+          {
+            "left": 1,
+            "top": 38,
+            "rightInclusive": 858,
+            "bottomInclusive": 862,
+            "width": 858,
+            "height": 825
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.98,
+            "lowestVisiblePixelApproxMappedTo32": 30.3,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.49,
+            "lowestVisiblePixelApproxMappedTo32": 31.1,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_child_doctor",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_child_doctor_strip.png",
+      "sha256": "9fe04991c3c083524fc0bb5ea0d95bd5ea80b84b362e8ef37e82884ea41aa1ea",
+      "byteSize": 731073,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "sick child with tiny generic medical cue adjacent",
+        "cue approaches or treatment applies non-graphically",
+        "cue recedes and child rises into recovery"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        }
+      ],
+      "promptId": "CHILD-DOCTOR-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-60d87d6c-d5c3-42a5-aa31-6ff509a85903.png",
+        "generationOutputHint": null,
+        "referenceRole": "the child master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 46208,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 41,
+            "top": 25,
+            "rightInclusive": 721,
+            "bottomInclusive": 687,
+            "width": 681,
+            "height": 663
+          },
+          {
+            "left": 5,
+            "top": 110,
+            "rightInclusive": 721,
+            "bottomInclusive": 689,
+            "width": 717,
+            "height": 580
+          },
+          {
+            "left": 5,
+            "top": 102,
+            "rightInclusive": 689,
+            "bottomInclusive": 699,
+            "width": 685,
+            "height": 598
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.84,
+            "lowestVisiblePixelApproxMappedTo32": 30.36,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.04,
+            "lowestVisiblePixelApproxMappedTo32": 30.45,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.34,
+            "lowestVisiblePixelApproxMappedTo32": 30.9,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_doctor",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_adult_doctor_strip.png",
+      "sha256": "964b703e70fa8fd5b67fa0f842275d30ba3232bee4b92652ff49b0e3d805886a",
+      "byteSize": 733876,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 3,
+      "layout": "horizontal",
+      "frameWidth": 724,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 724
+        },
+        {
+          "index": 1,
+          "x0": 724,
+          "x1": 1448
+        },
+        {
+          "index": 2,
+          "x0": 1448,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "sick adult with tiny generic medical cue adjacent",
+        "cue approaches or treatment applies non-graphically",
+        "cue recedes and adult rises into recovery"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "ADULT-DOCTOR-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-29a07eaf-b588-419c-b3af-e7dd843f64d7.png",
+        "generationOutputHint": null,
+        "referenceRole": "the adult master"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 42523,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 31,
+            "top": 37,
+            "rightInclusive": 721,
+            "bottomInclusive": 698,
+            "width": 691,
+            "height": 662
+          },
+          {
+            "left": 1,
+            "top": 22,
+            "rightInclusive": 723,
+            "bottomInclusive": 713,
+            "width": 723,
+            "height": 692
+          },
+          {
+            "left": 1,
+            "top": 37,
+            "rightInclusive": 692,
+            "bottomInclusive": 699,
+            "width": 692,
+            "height": 663
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.62,
+            "lowestVisiblePixelApproxMappedTo32": 30.85,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 16.0,
+            "lowestVisiblePixelApproxMappedTo32": 31.51,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.31,
+            "lowestVisiblePixelApproxMappedTo32": 30.9,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_evolve",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_evolve_strip.png",
+      "sha256": "dd32ba17a37b08ebe066affa0a3ea6156eea6a50d1625a76a11a26bfdb9d6fc2",
+      "byteSize": 814065,
+      "width": 2172,
+      "height": 724,
+      "colorMode": "RGBA",
+      "frameCount": 4,
+      "layout": "horizontal",
+      "frameWidth": 543,
+      "frameHeight": 724,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 543
+        },
+        {
+          "index": 1,
+          "x0": 543,
+          "x1": 1086
+        },
+        {
+          "index": 2,
+          "x0": 1086,
+          "x1": 1629
+        },
+        {
+          "index": 3,
+          "x0": 1629,
+          "x1": 2172
+        }
+      ],
+      "targetRuntimeWidth": 32,
+      "targetRuntimeHeight": 32,
+      "playback": "oneShot",
+      "frameIntent": [
+        "canonical child at common anchor",
+        "slightly lengthening torso/snout/limbs and developing quills",
+        "later intermediate clearly nearer adult",
+        "canonical adult at same anchor/ground line"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "identity"
+        },
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_adult_reference.png",
+          "sha256": "1e0f179668056cd1a8a2e98c62bb69fbd1e5dc9bb7066786e8b516b1a25c629e",
+          "role": "identity"
+        }
+      ],
+      "promptId": "EVOLVE-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-a8ef8767-0ade-4525-b6aa-3081ce046656.png",
+        "generationOutputHint": null,
+        "referenceRole": "child identity and adult identity"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 39233,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 45,
+            "top": 79,
+            "rightInclusive": 542,
+            "bottomInclusive": 703,
+            "width": 498,
+            "height": 625
+          },
+          {
+            "left": 0,
+            "top": 21,
+            "rightInclusive": 542,
+            "bottomInclusive": 707,
+            "width": 543,
+            "height": 687
+          },
+          {
+            "left": 0,
+            "top": 15,
+            "rightInclusive": 535,
+            "bottomInclusive": 699,
+            "width": 536,
+            "height": 685
+          },
+          {
+            "left": 1,
+            "top": 19,
+            "rightInclusive": 538,
+            "bottomInclusive": 723,
+            "width": 538,
+            "height": 705
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 17.3,
+            "lowestVisiblePixelApproxMappedTo32": 31.07,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.97,
+            "lowestVisiblePixelApproxMappedTo32": 31.25,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.76,
+            "lowestVisiblePixelApproxMappedTo32": 30.9,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          },
+          {
+            "facing": "screen-right",
+            "lightDirection": "upper-left flat-step",
+            "visualCenterApproxMappedTo32": 15.88,
+            "lowestVisiblePixelApproxMappedTo32": 31.96,
+            "measurementMethod": "alpha bounding-box approximation; action props/effects remain included in source observations"
+          }
+        ],
+        "splitBoundaryClearance": false
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    },
+    {
+      "group": "tamagotchi_mess",
+      "source": "_ai/art/tamagotchi/generated/tamagotchi_mess_strip.png",
+      "sha256": "1edd8fdaa71472e310edb73c886e99f718f5e104543252567e5df02dbc11ea95",
+      "byteSize": 181784,
+      "width": 1254,
+      "height": 1254,
+      "colorMode": "RGBA",
+      "frameCount": 1,
+      "layout": "horizontal",
+      "frameWidth": 1254,
+      "frameHeight": 1254,
+      "splitBoundaries": [
+        {
+          "index": 0,
+          "x0": 0,
+          "x1": 1254
+        }
+      ],
+      "targetRuntimeWidth": 16,
+      "targetRuntimeHeight": 16,
+      "playback": "static",
+      "frameIntent": [
+        "one compact non-graphic readable mess pile/spill symbol on transparency"
+      ],
+      "identityReferences": [
+        {
+          "relativePath": "_ai/art/tamagotchi/references/tamagotchi_child_reference.png",
+          "sha256": "dc23b6f8a95bf78eee575e58b22a36a013f53e763cfcf3472adc55d6bff21f1b",
+          "role": "stylePaletteOnly"
+        }
+      ],
+      "promptId": "MESS-v1",
+      "revision": 1,
+      "generation": {
+        "tool": "OpenAI built-in image-generation tool",
+        "modelVersion": "gpt-image 2.0",
+        "generationDate": "2026-09-15",
+        "generationArtifact": "exec-dbff6357-2ca1-4008-9557-c9773f0bfbfa.png",
+        "generationOutputHint": null,
+        "referenceRole": "child style/palette only"
+      },
+      "approvalDate": "2026-09-15",
+      "reviewer": "Codex implementation self-review",
+      "acceptanceNotes": "Exact one-row cell geometry and transparent corners verified. Source remains unmodified; deterministic alpha/palette/placement normalization is reserved for Phase 5.",
+      "observed": {
+        "alphaMin": 0,
+        "alphaMax": 255,
+        "alphaValueCount": 256,
+        "visibleColorCount": 15681,
+        "stripCornersAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "perCellNontransparentBoundingBoxes": [
+          {
+            "left": 176,
+            "top": 54,
+            "rightInclusive": 995,
+            "bottomInclusive": 1195,
+            "width": 820,
+            "height": 1142
+          }
+        ],
+        "perCellAnchors": [
+          {
+            "facing": null,
+            "lightDirection": null,
+            "visualCenterApproxMappedTo32": null,
+            "lowestVisiblePixelApproxMappedTo32": null,
+            "reason": "No pet identity anchor applies to this egg/mess source cell."
+          }
+        ],
+        "splitBoundaryClearance": true
+      },
+      "paletteComparison": {
+        "phase3SemanticRoles": [
+          {
+            "role": "outline",
+            "hex": "#231612"
+          },
+          {
+            "role": "deepQuill",
+            "hex": "#593528"
+          },
+          {
+            "role": "neutralSupport",
+            "hex": "#8A7568"
+          },
+          {
+            "role": "midQuill",
+            "hex": "#8C5033"
+          },
+          {
+            "role": "lightQuill",
+            "hex": "#BE7544"
+          },
+          {
+            "role": "warmFace",
+            "hex": "#E3A568"
+          },
+          {
+            "role": "blushAccent",
+            "hex": "#F28C78"
+          },
+          {
+            "role": "warmBelly",
+            "hex": "#FFD994"
+          },
+          {
+            "role": "creamIdentityMark",
+            "hex": "#FFF0BF"
+          },
+          {
+            "role": "eyeHighlight",
+            "hex": "#FFFDF4"
+          }
+        ],
+        "observation": "The unmodified built-in source has interpolated source pixels beyond the ten semantic swatches; all intended hues are unambiguously nearest-mappable to the frozen Phase 3 roles. No new pet identity color is approved."
+      },
+      "requiredPhase5Corrections": [
+        "alphaThresholding",
+        "paletteMapping",
+        "transparentMarginCrop",
+        "anchorPlacement"
+      ]
+    }
+  ]
+}
