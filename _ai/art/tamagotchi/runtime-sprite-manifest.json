@@ -1,0 +1,2160 @@
+{
+  "groups": [
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_clean_00.png",
+          "byteSize": 833,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "e51f259396d2c4dfe1ba9e48e0f14c7efb38b2a9185db03947c05186b3e9f8fe",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 29,
+            "top": 3,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_adult_clean_00",
+          "rawRgbaPixelSha256": "faeb867fe35bbd161a861648b7cdff05961cb20959efb2f76def6b8a4504e5b8",
+          "runtimePath": "raw-png/tamagotchi_adult_clean/tamagotchi_adult_clean_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_clean_01.png",
+          "byteSize": 855,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "fbe265c12c73285bc7e1226f3b30d80c05c86a50057a1e2f161969129bba1f47",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 31,
+            "top": 3,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_clean_01",
+          "rawRgbaPixelSha256": "aebe4f3aee9fcf99fe34cd830ee4e8af5d7d2e5ccd9b6262f4997a5dc2f48096",
+          "runtimePath": "raw-png/tamagotchi_adult_clean/tamagotchi_adult_clean_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_clean_02.png",
+          "byteSize": 798,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "a81d485c04e212d1a945ee4ae30f3f489edad7395f2d033d6a2b4d57f99e2091",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 29,
+            "top": 3,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_adult_clean_02",
+          "rawRgbaPixelSha256": "fa839f1b7a0655c859e90b67772685b4a6dd5b7d1b8561e89240a0ba74aba54c",
+          "runtimePath": "raw-png/tamagotchi_adult_clean/tamagotchi_adult_clean_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_clean",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_clean/tamagotchi_adult_clean_00.png",
+        "raw-png/tamagotchi_adult_clean/tamagotchi_adult_clean_01.png",
+        "raw-png/tamagotchi_adult_clean/tamagotchi_adult_clean_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_clean_strip.png",
+      "sourceStripSha256": "7af3d60826dc92c0effa68703ed213e9a3b7267fd420b8907e2d01388e01ab6b",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_doctor_00.png",
+          "byteSize": 735,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "21e825bc14bb4e31b4a31b0be49a75d0e909aa6a99edface6d9f996809cf7cb1",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 6,
+            "right": 31,
+            "top": 6,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_doctor_00",
+          "rawRgbaPixelSha256": "f07b96bb5e19edbd542d74abe3cb9839f421004d8f64c72d4c71b4096c8b8175",
+          "runtimePath": "raw-png/tamagotchi_adult_doctor/tamagotchi_adult_doctor_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_doctor_01.png",
+          "byteSize": 718,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "0cd661df8fd49f78798b26996f4142ae68be7d9a2cdcc4945589dc587bd4a3d2",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 7,
+            "right": 30,
+            "top": 5,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_adult_doctor_01",
+          "rawRgbaPixelSha256": "844c7911be21b778d00cae8b70a625b4104c5f7aa52792b01815d6360e430f9c",
+          "runtimePath": "raw-png/tamagotchi_adult_doctor/tamagotchi_adult_doctor_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_doctor_02.png",
+          "byteSize": 736,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "66269b7c0913f3a0ac95344a2f2cc7e8b63780d4c222453f49222b252d97739c",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 7,
+            "right": 31,
+            "top": 4,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_adult_doctor_02",
+          "rawRgbaPixelSha256": "ff62b51155415af3c6d94d18d01f1d58b16a269543269dd2177811bb9c6234fd",
+          "runtimePath": "raw-png/tamagotchi_adult_doctor/tamagotchi_adult_doctor_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_doctor",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_doctor/tamagotchi_adult_doctor_00.png",
+        "raw-png/tamagotchi_adult_doctor/tamagotchi_adult_doctor_01.png",
+        "raw-png/tamagotchi_adult_doctor/tamagotchi_adult_doctor_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_doctor_strip.png",
+      "sourceStripSha256": "964b703e70fa8fd5b67fa0f842275d30ba3232bee4b92652ff49b0e3d805886a",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_feed_00.png",
+          "byteSize": 780,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "d7aa3357091e520edc64ff1f8657188fb7f2c1e727563ddb4262c43c06873ee8",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 31,
+            "top": 3,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_feed_00",
+          "rawRgbaPixelSha256": "14489f0e22afea3d230b446408e9602a3b7f524eeadba06b4870481b91ae7a9d",
+          "runtimePath": "raw-png/tamagotchi_adult_feed/tamagotchi_adult_feed_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_feed_01.png",
+          "byteSize": 701,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "56c6db51f41acd922d44b4ec49a4efe7c11fa9d0b3ce7bb699087ea09e2cc705",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 7,
+            "right": 29,
+            "top": 4,
+            "width": 22
+          },
+          "png2cIdentifier": "tamagotchi_adult_feed_01",
+          "rawRgbaPixelSha256": "81ebce7c91b7ff8488bf14f4e89cd7a48e228d7f7ef3247f205468b56e24b081",
+          "runtimePath": "raw-png/tamagotchi_adult_feed/tamagotchi_adult_feed_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_feed_02.png",
+          "byteSize": 725,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "87d90dd31e993389b57f228ebf55d4326d9c8dd1dda1768e51e23259148cd47d",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 28,
+            "top": 3,
+            "width": 22
+          },
+          "png2cIdentifier": "tamagotchi_adult_feed_02",
+          "rawRgbaPixelSha256": "3bb6a97724a371533dfbbb7c8fb89e7e2511c24a9a738e4e0fd303986e4678f1",
+          "runtimePath": "raw-png/tamagotchi_adult_feed/tamagotchi_adult_feed_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_feed",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_feed/tamagotchi_adult_feed_00.png",
+        "raw-png/tamagotchi_adult_feed/tamagotchi_adult_feed_01.png",
+        "raw-png/tamagotchi_adult_feed/tamagotchi_adult_feed_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_feed_strip.png",
+      "sourceStripSha256": "571f22b4940e10d48e3b38c2dff3fe8f273e485ad060c67571bfedfaab469c53",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_idle_00.png",
+          "byteSize": 779,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "f79cc7ed8e3c4035210f6f2b35860aff5648041f720b6810bbaed3629e871299",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 4,
+            "right": 29,
+            "top": 3,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_idle_00",
+          "rawRgbaPixelSha256": "d557777c01f73e575b5cb24e9f74b95c483295eb96c3b2640bb6e4aeb366f22d",
+          "runtimePath": "raw-png/tamagotchi_adult_idle/tamagotchi_adult_idle_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_idle_01.png",
+          "byteSize": 758,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "fe5b59ea4cdfaa4cbc3e8ba1fbd10ca7d5fbee41f1021b93b8a632cb217896c6",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 4,
+            "right": 29,
+            "top": 3,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_idle_01",
+          "rawRgbaPixelSha256": "333cb97a6b627ac6d661ea55d404d664ac4ad2f90e8b7fb93975d9f65032175b",
+          "runtimePath": "raw-png/tamagotchi_adult_idle/tamagotchi_adult_idle_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_idle_02.png",
+          "byteSize": 797,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "2b884abfcd96323e4a3dc5de28d0483f88b5583b844d1129e765a68d60e3823e",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 5,
+            "right": 30,
+            "top": 3,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_idle_02",
+          "rawRgbaPixelSha256": "67361bc196776212438101c54892930b58fb73886f123434947ee4ad988b134f",
+          "runtimePath": "raw-png/tamagotchi_adult_idle/tamagotchi_adult_idle_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_idle",
+      "loopMode": "loop",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_idle/tamagotchi_adult_idle_00.png",
+        "raw-png/tamagotchi_adult_idle/tamagotchi_adult_idle_01.png",
+        "raw-png/tamagotchi_adult_idle/tamagotchi_adult_idle_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_idle_strip.png",
+      "sourceStripSha256": "5895da69648d75ae5fa34440ddd13e20ab932751d84efdd660e4e6e190d5ee60",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_play_00.png",
+          "byteSize": 838,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "3403b264db5acf2b144c23e628cb4df34568f5fdfbd4562b08c094ef726f5c1b",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 5,
+            "right": 30,
+            "top": 4,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_play_00",
+          "rawRgbaPixelSha256": "14bf981b3a38f801cec908bd3385d358f8c303b7226d5d7e6b57d4f44f0d5eb0",
+          "runtimePath": "raw-png/tamagotchi_adult_play/tamagotchi_adult_play_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_play_01.png",
+          "byteSize": 839,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "1b5b994ff9ebec93c8ce89a359416da0e842c10b2fdb476fc872da98cad78966",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 5,
+            "right": 29,
+            "top": 4,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_adult_play_01",
+          "rawRgbaPixelSha256": "8ae77bef39d9d909156de563d4848f3eadb0b3665572c850b699854a057ef011",
+          "runtimePath": "raw-png/tamagotchi_adult_play/tamagotchi_adult_play_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_play_02.png",
+          "byteSize": 817,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "bfe5e2620f0a7d71d8abfd79d9d3f5ac3107df6efaa1683bc4ece48ba00575aa",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 29,
+            "top": 3,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_adult_play_02",
+          "rawRgbaPixelSha256": "19a33416b043720e05f51dd3dd615aa199ca1e7db34eb4d1a06975a735119bee",
+          "runtimePath": "raw-png/tamagotchi_adult_play/tamagotchi_adult_play_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_play",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_play/tamagotchi_adult_play_00.png",
+        "raw-png/tamagotchi_adult_play/tamagotchi_adult_play_01.png",
+        "raw-png/tamagotchi_adult_play/tamagotchi_adult_play_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_play_strip.png",
+      "sourceStripSha256": "2b417ecc960aa4dce6b70996e93992ff3e0ee06ccd936189e59ab1ccf114d983",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 2,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_rest_00.png",
+          "byteSize": 814,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "b6c71a75784bf4f69fa734452e3ef6d7c24715388df69bc0c0553e3273329487",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 5,
+            "right": 31,
+            "top": 5,
+            "width": 26
+          },
+          "png2cIdentifier": "tamagotchi_adult_rest_00",
+          "rawRgbaPixelSha256": "1efc6bc6a9286d29c5b6adcd14b528b7e83cb80bf1db21e396fb4d347ea61d3d",
+          "runtimePath": "raw-png/tamagotchi_adult_rest/tamagotchi_adult_rest_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_rest_01.png",
+          "byteSize": 654,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "ac4c39132eb7b8435653b43bbcfbc1dceb0a41855f73003b9b26ff16c95802ab",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 19,
+            "left": 4,
+            "right": 30,
+            "top": 10,
+            "width": 26
+          },
+          "png2cIdentifier": "tamagotchi_adult_rest_01",
+          "rawRgbaPixelSha256": "6931e291ae5df4e7fe4629a2530f76c6df62146d222250925b14ce27807f2282",
+          "runtimePath": "raw-png/tamagotchi_adult_rest/tamagotchi_adult_rest_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_rest",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_rest/tamagotchi_adult_rest_00.png",
+        "raw-png/tamagotchi_adult_rest/tamagotchi_adult_rest_01.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_rest_strip.png",
+      "sourceStripSha256": "e38444fc94d1a86273a0c7dcd0bc6dd5167ab0e6bd639028372fc6d8c53caaaf",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 2,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_sick_00.png",
+          "byteSize": 712,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "09c452bcc6086072defa8833cdda7ccca6de6fe039e083f53c266a61d792e85b",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 6,
+            "right": 30,
+            "top": 3,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_adult_sick_00",
+          "rawRgbaPixelSha256": "0d61a5b604448c565c4fedd20d0d248315889a54f7f4d5a771ec094a614524d1",
+          "runtimePath": "raw-png/tamagotchi_adult_sick/tamagotchi_adult_sick_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_adult_sick_01.png",
+          "byteSize": 731,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "f5d98c3e16bce3ae42f6773734080a9f4079a02820b438a4807fb0ff24a8ce05",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 5,
+            "right": 30,
+            "top": 3,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_adult_sick_01",
+          "rawRgbaPixelSha256": "b339e3dac3f7aab2ac7e7695f3be30aed016a1e89be9d4b6d757caf22f919e5b",
+          "runtimePath": "raw-png/tamagotchi_adult_sick/tamagotchi_adult_sick_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_adult_sick",
+      "loopMode": "loop",
+      "runtimePaths": [
+        "raw-png/tamagotchi_adult_sick/tamagotchi_adult_sick_00.png",
+        "raw-png/tamagotchi_adult_sick/tamagotchi_adult_sick_01.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_adult_sick_strip.png",
+      "sourceStripSha256": "36d3859a8153ef4ee3c1b7d0ab5649b79b5e6bbc264421a096f3ee32c982a94f",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_clean_00.png",
+          "byteSize": 696,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "c73ac2b70351af3d445caf73eee69198dd956cb94844df29c0523b8c4ed3ef08",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 6,
+            "right": 29,
+            "top": 5,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_child_clean_00",
+          "rawRgbaPixelSha256": "323605ac84b3cef4f1e853adbee4f257a73b7ff1b0afc005837b76371efda58c",
+          "runtimePath": "raw-png/tamagotchi_child_clean/tamagotchi_child_clean_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_clean_01.png",
+          "byteSize": 800,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "678d1f2cad08897ba7cc0cdf96a6dcc2acf1c841f9ad28033e919d19f4994b84",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 6,
+            "right": 28,
+            "top": 5,
+            "width": 22
+          },
+          "png2cIdentifier": "tamagotchi_child_clean_01",
+          "rawRgbaPixelSha256": "9a2a0ed7af341705a6270fff9a4dcd7562ef2387f5b5ae227687ceeb14420d27",
+          "runtimePath": "raw-png/tamagotchi_child_clean/tamagotchi_child_clean_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_clean_02.png",
+          "byteSize": 730,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "917f5fff02951172ac3d4609ea2486acc7e0538c57f3f8f52a87915d2b15da0b",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 6,
+            "right": 30,
+            "top": 5,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_child_clean_02",
+          "rawRgbaPixelSha256": "ebbc38aaabbe4cb36fc28db270f886fb9f78de43a597d265847c39562e1cae67",
+          "runtimePath": "raw-png/tamagotchi_child_clean/tamagotchi_child_clean_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_clean",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_clean/tamagotchi_child_clean_00.png",
+        "raw-png/tamagotchi_child_clean/tamagotchi_child_clean_01.png",
+        "raw-png/tamagotchi_child_clean/tamagotchi_child_clean_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_clean_strip.png",
+      "sourceStripSha256": "a2cac4e9941db4546eaa56162e419616968efd0c3dff01b0f11b80035fdd2fee",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_doctor_00.png",
+          "byteSize": 713,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "62798692e4c4b67cea0a0fa0298c44c46e3a26f4b728a33c1ed353e9e5be8712",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 6,
+            "right": 31,
+            "top": 6,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_doctor_00",
+          "rawRgbaPixelSha256": "ef2e42342957ef189841ca7c13fa47a17112e3aedcab31714d209e36da5c6785",
+          "runtimePath": "raw-png/tamagotchi_child_doctor/tamagotchi_child_doctor_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_doctor_01.png",
+          "byteSize": 697,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "d929fa76bb3b8c103b12c1c77be0fb9a14afec2950375aec1af50014b8994741",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 6,
+            "right": 26,
+            "top": 6,
+            "width": 20
+          },
+          "png2cIdentifier": "tamagotchi_child_doctor_01",
+          "rawRgbaPixelSha256": "ec153ef2531084cd2129a6d9a09127410bda4dac3b65c3baa8fda00bf47aa675",
+          "runtimePath": "raw-png/tamagotchi_child_doctor/tamagotchi_child_doctor_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_doctor_02.png",
+          "byteSize": 733,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "c319c9ddd0725aa324edca976209dacdf11e1c12beed1cf9abb6413631d62560",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 6,
+            "right": 31,
+            "top": 6,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_doctor_02",
+          "rawRgbaPixelSha256": "90bc8134f8329a51466480681b0ea2d7077efd07cc1b32b252be10441d0ce138",
+          "runtimePath": "raw-png/tamagotchi_child_doctor/tamagotchi_child_doctor_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_doctor",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_doctor/tamagotchi_child_doctor_00.png",
+        "raw-png/tamagotchi_child_doctor/tamagotchi_child_doctor_01.png",
+        "raw-png/tamagotchi_child_doctor/tamagotchi_child_doctor_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_doctor_strip.png",
+      "sourceStripSha256": "9fe04991c3c083524fc0bb5ea0d95bd5ea80b84b362e8ef37e82884ea41aa1ea",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_feed_00.png",
+          "byteSize": 755,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "2668ad21649c69dc0fc04631abc74ae008eeb862cdd779049360841d0c0d9241",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 5,
+            "right": 30,
+            "top": 5,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_feed_00",
+          "rawRgbaPixelSha256": "ff00dcf27d8505d28c6dd0bfa6db5f806ba4963be6bbf3f01893c5164d8f2564",
+          "runtimePath": "raw-png/tamagotchi_child_feed/tamagotchi_child_feed_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_feed_01.png",
+          "byteSize": 676,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "990c17ed6a25f7bd3ddf0bc8cfac74327198dcb9b99ee45c8a17c8425a3cfe83",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 7,
+            "right": 31,
+            "top": 6,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_child_feed_01",
+          "rawRgbaPixelSha256": "88519852f2578c25dd748214f2f1097309c7c7326476de843897d4f11d3ec051",
+          "runtimePath": "raw-png/tamagotchi_child_feed/tamagotchi_child_feed_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_feed_02.png",
+          "byteSize": 752,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "f3f4de6cd69bf3ffeec6196a1d778aa0e934e1bd42b164131d8cd2815731342e",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 24,
+            "left": 7,
+            "right": 29,
+            "top": 5,
+            "width": 22
+          },
+          "png2cIdentifier": "tamagotchi_child_feed_02",
+          "rawRgbaPixelSha256": "d491a624b660e1c392193bcdcb8ad3f11ead13f9547b04bd8709365ae1c683e2",
+          "runtimePath": "raw-png/tamagotchi_child_feed/tamagotchi_child_feed_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_feed",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_feed/tamagotchi_child_feed_00.png",
+        "raw-png/tamagotchi_child_feed/tamagotchi_child_feed_01.png",
+        "raw-png/tamagotchi_child_feed/tamagotchi_child_feed_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_feed_strip.png",
+      "sourceStripSha256": "18b6fea18c3db0d2b5d94416b820df6006dee5cb151ecd5f46301c27256d2659",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_idle_00.png",
+          "byteSize": 759,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "b36ec69d5e41987640e47d3f7a10b7196cbb6516a945e5f1140e73e8b7001ae3",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 5,
+            "right": 28,
+            "top": 4,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_child_idle_00",
+          "rawRgbaPixelSha256": "a34062a7d6035253f3989d288c89db9033e2a566d24b9eb2ee3679c98b10b0a4",
+          "runtimePath": "raw-png/tamagotchi_child_idle/tamagotchi_child_idle_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_idle_01.png",
+          "byteSize": 721,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "5e9383802b6c9807360a8ac20e6e972f6515b199fbefb0125d828ab6703136f6",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 6,
+            "right": 29,
+            "top": 4,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_child_idle_01",
+          "rawRgbaPixelSha256": "5c40763e6c9b0fbec9d9b021faf41f74723dd71f8835ff1d0e9aa6f8283c1189",
+          "runtimePath": "raw-png/tamagotchi_child_idle/tamagotchi_child_idle_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_idle_02.png",
+          "byteSize": 752,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "94253e0ab0e0d238d504d50d47ec3518e383ca829b1db05189ce5ac88cebfe72",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 6,
+            "right": 29,
+            "top": 4,
+            "width": 23
+          },
+          "png2cIdentifier": "tamagotchi_child_idle_02",
+          "rawRgbaPixelSha256": "1b6e37c8769b533ec1629a0ecbfa3f1c2a32faf08e2d137bdf7d4fd47354c4e4",
+          "runtimePath": "raw-png/tamagotchi_child_idle/tamagotchi_child_idle_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_idle",
+      "loopMode": "loop",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_idle/tamagotchi_child_idle_00.png",
+        "raw-png/tamagotchi_child_idle/tamagotchi_child_idle_01.png",
+        "raw-png/tamagotchi_child_idle/tamagotchi_child_idle_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_idle_strip.png",
+      "sourceStripSha256": "419bfc28da498adb0e6032ff6efbb2faeffd9b4b5892afa8df571580f93df9f9",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 3,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_play_00.png",
+          "byteSize": 693,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "116027986bc7a6ba641266c85892b468774e87d5aa59d454f6821b8e8a83970b",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 4,
+            "right": 28,
+            "top": 6,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_child_play_00",
+          "rawRgbaPixelSha256": "6cdd1989c4a0d9836c02b995c93342c8e58f11bfdb57681229d6ade584371878",
+          "runtimePath": "raw-png/tamagotchi_child_play/tamagotchi_child_play_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_play_01.png",
+          "byteSize": 726,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "f2032e322dfd99fd375a42d03d2f3c3dbb41f6f2949f4c5bf9d87b7af00cf438",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 5,
+            "right": 30,
+            "top": 6,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_play_01",
+          "rawRgbaPixelSha256": "d9dc5579ef01c9cbd9c1f2db0594cc8573dced9997a0c05907ef1f08ecc13e00",
+          "runtimePath": "raw-png/tamagotchi_child_play/tamagotchi_child_play_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_play_02.png",
+          "byteSize": 715,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "13b0cc5c3952dc5ecf724bd5e9ca04018d2ac25264969d58dfc8cac0decacb3e",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 4,
+            "right": 28,
+            "top": 6,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_child_play_02",
+          "rawRgbaPixelSha256": "be2b279406256388585a7c5ebadef2f9438223e0b1403fd171b2d1b792aaf496",
+          "runtimePath": "raw-png/tamagotchi_child_play/tamagotchi_child_play_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_play",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_play/tamagotchi_child_play_00.png",
+        "raw-png/tamagotchi_child_play/tamagotchi_child_play_01.png",
+        "raw-png/tamagotchi_child_play/tamagotchi_child_play_02.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_play_strip.png",
+      "sourceStripSha256": "c30059c3573a99b04a7b56ff730893fe2a18724477f38f07b1657ff3c9e956fe",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 2,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_rest_00.png",
+          "byteSize": 700,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "124f9a9ebf0c016b5c343cdbe66602850b8d6407530ac3875f9f4564601e69dc",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 22,
+            "left": 4,
+            "right": 29,
+            "top": 7,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_rest_00",
+          "rawRgbaPixelSha256": "129a693c25e0ef05d05915d1efba5ab571f74d8b810b4294f6feb843830fdd5a",
+          "runtimePath": "raw-png/tamagotchi_child_rest/tamagotchi_child_rest_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_rest_01.png",
+          "byteSize": 669,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "6c22eb114147f186a90840e56f251d350a85dc0713017eb3db0d22530ef0f2bb",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 20,
+            "left": 5,
+            "right": 30,
+            "top": 9,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_rest_01",
+          "rawRgbaPixelSha256": "342e517429033283a77b07806a85c72d069c64257319355bc14eb9f76313dbbd",
+          "runtimePath": "raw-png/tamagotchi_child_rest/tamagotchi_child_rest_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_rest",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_rest/tamagotchi_child_rest_00.png",
+        "raw-png/tamagotchi_child_rest/tamagotchi_child_rest_01.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_rest_strip.png",
+      "sourceStripSha256": "47e230d6632721d890e873a46e69d4e0cda55ff8682f853cd580f696ae56baa8",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 2,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_sick_00.png",
+          "byteSize": 735,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "a2717e3000d07d678afb0e258dc6dc69a1cfb476672595d40bb502e18652218a",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 4,
+            "right": 29,
+            "top": 6,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_sick_00",
+          "rawRgbaPixelSha256": "7d0fde1d0317d4efd822f84a48859e0c1eb8f95701f3dde4b005103183cf30e3",
+          "runtimePath": "raw-png/tamagotchi_child_sick/tamagotchi_child_sick_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_child_sick_01.png",
+          "byteSize": 758,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "a85aa2b8a350cc311408e7180c5004f502c268173b7dd1d43d0f314280be490a",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 5,
+            "right": 30,
+            "top": 6,
+            "width": 25
+          },
+          "png2cIdentifier": "tamagotchi_child_sick_01",
+          "rawRgbaPixelSha256": "458f9a607bf90f364e84e5b5076cf9530f4b95f267760dcdc4508ba9058cc700",
+          "runtimePath": "raw-png/tamagotchi_child_sick/tamagotchi_child_sick_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_child_sick",
+      "loopMode": "loop",
+      "runtimePaths": [
+        "raw-png/tamagotchi_child_sick/tamagotchi_child_sick_00.png",
+        "raw-png/tamagotchi_child_sick/tamagotchi_child_sick_01.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_child_sick_strip.png",
+      "sourceStripSha256": "1ffc81d57c3aef30e2ffb1acba530c58421c96defc10e0cbad06547e47132c03",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 2,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_egg_00.png",
+          "byteSize": 503,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "bb6fcd2bc07bf73b87d65d92ec02539870d98c1b901c988768eaef52ba7cf703",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 8,
+            "right": 27,
+            "top": 6,
+            "width": 19
+          },
+          "png2cIdentifier": "tamagotchi_egg_00",
+          "rawRgbaPixelSha256": "5c8287b5365de14eeb0aceb8d00eeb3d6768e5a3f618291773791aaec4e97c3b",
+          "runtimePath": "raw-png/tamagotchi_egg/tamagotchi_egg_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_egg_01.png",
+          "byteSize": 487,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "6b3bf330204768a5e9f631557415f3bc2919d6657b63c83958076df657d7b346",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 23,
+            "left": 8,
+            "right": 27,
+            "top": 6,
+            "width": 19
+          },
+          "png2cIdentifier": "tamagotchi_egg_01",
+          "rawRgbaPixelSha256": "19b4e6105bd9f208b125919dc49e3c505b87ccf73e9f3a92e7acd55b89e87e92",
+          "runtimePath": "raw-png/tamagotchi_egg/tamagotchi_egg_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 7,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#FFD994",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_egg",
+      "loopMode": "loop",
+      "runtimePaths": [
+        "raw-png/tamagotchi_egg/tamagotchi_egg_00.png",
+        "raw-png/tamagotchi_egg/tamagotchi_egg_01.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_egg_strip.png",
+      "sourceStripSha256": "a0c6b228e5f776eae8ceb39c675776fb50e176cb0cfcaff37665407382add117",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 4,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_evolve_00.png",
+          "byteSize": 640,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "5b8d51017949d34f7e1a902d0c0d1c086928fd339009024cc17a10b54aa78d06",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 20,
+            "left": 6,
+            "right": 26,
+            "top": 9,
+            "width": 20
+          },
+          "png2cIdentifier": "tamagotchi_evolve_00",
+          "rawRgbaPixelSha256": "866785ea8f96cce6eca59d8a0d2c2280df3e0f60830e495d5b3b5501759f2d3a",
+          "runtimePath": "raw-png/tamagotchi_evolve/tamagotchi_evolve_00.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_evolve_01.png",
+          "byteSize": 695,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "ebc93fdbd6ec4031f11b4797c423bc95f562835798296cfc893b80af1766deee",
+          "index": 1,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 22,
+            "left": 5,
+            "right": 26,
+            "top": 7,
+            "width": 21
+          },
+          "png2cIdentifier": "tamagotchi_evolve_01",
+          "rawRgbaPixelSha256": "986385a106c35a08c418be0958627d1ecef56331fe6bd5f4a3ac0a0cfbd74559",
+          "runtimePath": "raw-png/tamagotchi_evolve/tamagotchi_evolve_01.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_evolve_02.png",
+          "byteSize": 729,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "88775ec05ae69b2a63aeb05c13cde66733b7660da7aa4bdcd71b56d80478fa43",
+          "index": 2,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 25,
+            "left": 5,
+            "right": 27,
+            "top": 4,
+            "width": 22
+          },
+          "png2cIdentifier": "tamagotchi_evolve_02",
+          "rawRgbaPixelSha256": "269d659184513519aeef31a3c71f4d1246fc7306892734279298ca8f44ed3c9e",
+          "runtimePath": "raw-png/tamagotchi_evolve/tamagotchi_evolve_02.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 10,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        },
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_evolve_03.png",
+          "byteSize": 744,
+          "dimensions": [
+            32,
+            32
+          ],
+          "estimatedArgb8888Bytes": 4096,
+          "fileSha256": "20a3a621671c745240bc54a37f72827f81e6e254b7000cdeeffaf8e236053e96",
+          "index": 3,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 29,
+            "height": 26,
+            "left": 5,
+            "right": 29,
+            "top": 3,
+            "width": 24
+          },
+          "png2cIdentifier": "tamagotchi_evolve_03",
+          "rawRgbaPixelSha256": "343ff462246bc7aec70e3f9090020e6cc88e218e220ea6809aa8563c1d8f679a",
+          "runtimePath": "raw-png/tamagotchi_evolve/tamagotchi_evolve_03.png",
+          "targetAnchorX": 16,
+          "targetGroundY": 28,
+          "visibleColorCount": 9,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#8C5033",
+            "#BE7544",
+            "#E3A568",
+            "#F28C78",
+            "#FFD994",
+            "#FFF0BF"
+          ]
+        }
+      ],
+      "group": "tamagotchi_evolve",
+      "loopMode": "oneShot",
+      "runtimePaths": [
+        "raw-png/tamagotchi_evolve/tamagotchi_evolve_00.png",
+        "raw-png/tamagotchi_evolve/tamagotchi_evolve_01.png",
+        "raw-png/tamagotchi_evolve/tamagotchi_evolve_02.png",
+        "raw-png/tamagotchi_evolve/tamagotchi_evolve_03.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_evolve_strip.png",
+      "sourceStripSha256": "dd32ba17a37b08ebe066affa0a3ea6156eea6a50d1625a76a11a26bfdb9d6fc2",
+      "targetSize": [
+        32,
+        32
+      ]
+    },
+    {
+      "frameCount": 1,
+      "frames": [
+        {
+          "alphaValues": [
+            0,
+            255
+          ],
+          "basename": "tamagotchi_mess_00.png",
+          "byteSize": 197,
+          "dimensions": [
+            16,
+            16
+          ],
+          "estimatedArgb8888Bytes": 1024,
+          "fileSha256": "82ec6aedf48b093772cba1c9c0046197ff522d569738081ac4112262ec7a440c",
+          "index": 0,
+          "mode": "RGBA",
+          "opaqueBoundingBox": {
+            "bottom": 15,
+            "height": 8,
+            "left": 3,
+            "right": 13,
+            "top": 7,
+            "width": 10
+          },
+          "png2cIdentifier": "tamagotchi_mess_00",
+          "rawRgbaPixelSha256": "0573ad598279a377149c9f8de53796b2325485d285d8776a35fff385f845f558",
+          "runtimePath": "raw-png/tamagotchi_mess/tamagotchi_mess_00.png",
+          "targetAnchorX": 8,
+          "targetGroundY": 14,
+          "visibleColorCount": 8,
+          "visibleColors": [
+            "#231612",
+            "#593528",
+            "#8A7568",
+            "#BE7544",
+            "#E3A568",
+            "#FFD994",
+            "#FFF0BF",
+            "#FFFDF4"
+          ]
+        }
+      ],
+      "group": "tamagotchi_mess",
+      "loopMode": "static",
+      "runtimePaths": [
+        "raw-png/tamagotchi_mess/tamagotchi_mess_00.png"
+      ],
+      "sourceStripPath": "_ai/art/tamagotchi/generated/tamagotchi_mess_strip.png",
+      "sourceStripSha256": "1edd8fdaa71472e310edb73c886e99f718f5e104543252567e5df02dbc11ea95",
+      "targetSize": [
+        16,
+        16
+      ]
+    }
+  ],
+  "pillowVersion": "12.1.0",
+  "processingManifestSha256": "86feb435c55916ac37b2d268280d4773259c9e00d5fcf495b7e8f78b1a82aa09",
+  "schemaVersion": 1,
+  "staleRuntimeBasenamesPruned": [],
+  "toolVersion": 1,
+  "totals": {
+    "descriptorCount": 45,
+    "estimatedArgb8888Bytes": 181248,
+    "fileCount": 45,
+    "frame16x16Count": 1,
+    "frame32x32Count": 44,
+    "groupCount": 17
+  }
+}
