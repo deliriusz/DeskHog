@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": 1,
+  "pillowVersion": "12.1.0",
+  "sourceManifest": "_ai/art/tamagotchi/generated/strip-manifest.json",
+  "sourceManifestSha256": "f69bf7c14329e7bf8aaefbefe3fc7bf74110b2cf92d6824f010b554ccdea22ef",
+  "outputRoot": "raw-png",
+  "rounding": {
+    "dimension": "nearest_half_up",
+    "coordinate": "one_based_nearest_half_up_minus_one"
+  },
+  "visualReview": {
+    "reviewer": "Codex implementation self-review",
+    "result": "accepted",
+    "checks": [
+      "native_1x",
+      "two_x",
+      "eight_x_nearest",
+      "black",
+      "white",
+      "magenta",
+      "checkerboard",
+      "card_background",
+      "numeric_animation_order"
+    ],
+    "notes": "Reviewed the final RGBA outputs at native, 2x, and 8x nearest-neighbor scale; composited them over black, white, magenta, checkerboard, and the card background. Child and adult identity, actions, ground placement, egg, evolve progression, and the separate mess icon remain legible in numeric frame order."
+  },
+  "ownedOutputDirectories": [
+    "tamagotchi_adult_clean",
+    "tamagotchi_adult_doctor",
+    "tamagotchi_adult_feed",
+    "tamagotchi_adult_idle",
+    "tamagotchi_adult_play",
+    "tamagotchi_adult_rest",
+    "tamagotchi_adult_sick",
+    "tamagotchi_child_clean",
+    "tamagotchi_child_doctor",
+    "tamagotchi_child_feed",
+    "tamagotchi_child_idle",
+    "tamagotchi_child_play",
+    "tamagotchi_child_rest",
+    "tamagotchi_child_sick",
+    "tamagotchi_egg",
+    "tamagotchi_evolve",
+    "tamagotchi_mess"
+  ],
+  "palettes": {
+    "pet": [
+      "#231612",
+      "#593528",
+      "#8A7568",
+      "#8C5033",
+      "#BE7544",
+      "#E3A568",
+      "#F28C78",
+      "#FFD994",
+      "#FFF0BF",
+      "#FFFDF4"
+    ]
+  },
+  "groups": [
+    {
+      "group": "tamagotchi_adult_clean",
+      "sourceGroup": "tamagotchi_adult_clean",
+      "sourceSha256": "7af3d60826dc92c0effa68703ed213e9a3b7267fd420b8907e2d01388e01ab6b",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 6886},
+      "scale": {"numerator": 1, "denominator": 23, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [101, 57, 624, 646], "sourceAnchorX": 358, "sourceGroundY": 645, "targetOffset": [0, 0], "output": "tamagotchi_adult_clean_00.png"},
+        {"index": 1, "crop": [100, 57, 665, 646], "sourceAnchorX": 342, "sourceGroundY": 645, "targetOffset": [0, 0], "output": "tamagotchi_adult_clean_01.png"},
+        {"index": 2, "crop": [100, 57, 622, 646], "sourceAnchorX": 344, "sourceGroundY": 645, "targetOffset": [0, 0], "output": "tamagotchi_adult_clean_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_doctor",
+      "sourceGroup": "tamagotchi_adult_doctor",
+      "sourceSha256": "964b703e70fa8fd5b67fa0f842275d30ba3232bee4b92652ff49b0e3d805886a",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 7811},
+      "scale": {"numerator": 1, "denominator": 24, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [113, 94, 716, 656], "sourceAnchorX": 376, "sourceGroundY": 655, "targetOffset": [0, 0], "output": "tamagotchi_adult_doctor_00.png"},
+        {"index": 1, "crop": [124, 70, 671, 657], "sourceAnchorX": 362, "sourceGroundY": 656, "targetOffset": [0, 0], "output": "tamagotchi_adult_doctor_01.png"},
+        {"index": 2, "crop": [105, 55, 691, 657], "sourceAnchorX": 346, "sourceGroundY": 656, "targetOffset": [0, 0], "output": "tamagotchi_adult_doctor_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_feed",
+      "sourceGroup": "tamagotchi_adult_feed",
+      "sourceSha256": "571f22b4940e10d48e3b38c2dff3fe8f273e485ad060c67571bfedfaab469c53",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 7493},
+      "scale": {"numerator": 1, "denominator": 25, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [95, 38, 719, 679], "sourceAnchorX": 361, "sourceGroundY": 678, "targetOffset": [0, 0], "output": "tamagotchi_adult_feed_00.png"},
+        {"index": 1, "crop": [116, 52, 670, 679], "sourceAnchorX": 364, "sourceGroundY": 678, "targetOffset": [0, 0], "output": "tamagotchi_adult_feed_01.png"},
+        {"index": 2, "crop": [95, 38, 642, 679], "sourceAnchorX": 361, "sourceGroundY": 678, "targetOffset": [0, 0], "output": "tamagotchi_adult_feed_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_idle",
+      "sourceGroup": "tamagotchi_adult_idle",
+      "sourceSha256": "5895da69648d75ae5fa34440ddd13e20ab932751d84efdd660e4e6e190d5ee60",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 3587},
+      "scale": {"numerator": 1, "denominator": 24, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [96, 43, 699, 669], "sourceAnchorX": 407, "sourceGroundY": 668, "targetOffset": [0, 0], "output": "tamagotchi_adult_idle_00.png"},
+        {"index": 1, "crop": [51, 43, 654, 669], "sourceAnchorX": 363, "sourceGroundY": 668, "targetOffset": [0, 0], "output": "tamagotchi_adult_idle_01.png"},
+        {"index": 2, "crop": [50, 43, 654, 669], "sourceAnchorX": 339, "sourceGroundY": 668, "targetOffset": [0, 0], "output": "tamagotchi_adult_idle_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_play",
+      "sourceGroup": "tamagotchi_adult_play",
+      "sourceSha256": "2b417ecc960aa4dce6b70996e93992ff3e0ee06ccd936189e59ab1ccf114d983",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 7326},
+      "scale": {"numerator": 1, "denominator": 24, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [89, 65, 679, 669], "sourceAnchorX": 371, "sourceGroundY": 668, "targetOffset": [0, 0], "output": "tamagotchi_adult_play_00.png"},
+        {"index": 1, "crop": [101, 63, 677, 669], "sourceAnchorX": 382, "sourceGroundY": 668, "targetOffset": [0, 0], "output": "tamagotchi_adult_play_01.png"},
+        {"index": 2, "crop": [93, 48, 638, 669], "sourceAnchorX": 359, "sourceGroundY": 668, "targetOffset": [0, 0], "output": "tamagotchi_adult_play_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_rest",
+      "sourceGroup": "tamagotchi_adult_rest",
+      "sourceSha256": "e38444fc94d1a86273a0c7dcd0bc6dd5167ab0e6bd639028372fc6d8c53caaaf",
+      "frameCount": 2,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 4790},
+      "scale": {"numerator": 1, "denominator": 30, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [109, 104, 881, 817], "sourceAnchorX": 462, "sourceGroundY": 816, "targetOffset": [0, 0], "output": "tamagotchi_adult_rest_00.png"},
+        {"index": 1, "crop": [68, 257, 840, 817], "sourceAnchorX": 462, "sourceGroundY": 816, "targetOffset": [0, 0], "output": "tamagotchi_adult_rest_01.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_adult_sick",
+      "sourceGroup": "tamagotchi_adult_sick",
+      "sourceSha256": "36d3859a8153ef4ee3c1b7d0ab5649b79b5e6bbc264421a096f3ee32c982a94f",
+      "frameCount": 2,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 4515},
+      "scale": {"numerator": 1, "denominator": 28, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [135, 82, 813, 813], "sourceAnchorX": 443, "sourceGroundY": 812, "targetOffset": [0, 0], "output": "tamagotchi_adult_sick_00.png"},
+        {"index": 1, "crop": [101, 77, 789, 814], "sourceAnchorX": 429, "sourceGroundY": 813, "targetOffset": [0, 0], "output": "tamagotchi_adult_sick_01.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_clean",
+      "sourceGroup": "tamagotchi_child_clean",
+      "sourceSha256": "a2cac4e9941db4546eaa56162e419616968efd0c3dff01b0f11b80035fdd2fee",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 7602},
+      "scale": {"numerator": 1, "denominator": 26, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [88, 35, 718, 671], "sourceAnchorX": 370, "sourceGroundY": 670, "targetOffset": [0, 0], "output": "tamagotchi_child_clean_00.png"},
+        {"index": 1, "crop": [81, 35, 644, 671], "sourceAnchorX": 359, "sourceGroundY": 670, "targetOffset": [0, 0], "output": "tamagotchi_child_clean_01.png"},
+        {"index": 2, "crop": [76, 35, 699, 671], "sourceAnchorX": 352, "sourceGroundY": 670, "targetOffset": [0, 0], "output": "tamagotchi_child_clean_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_doctor",
+      "sourceGroup": "tamagotchi_child_doctor",
+      "sourceSha256": "9fe04991c3c083524fc0bb5ea0d95bd5ea80b84b362e8ef37e82884ea41aa1ea",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 8370},
+      "scale": {"numerator": 1, "denominator": 24, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [107, 119, 695, 664], "sourceAnchorX": 381, "sourceGroundY": 663, "targetOffset": [0, 0], "output": "tamagotchi_child_doctor_00.png"},
+        {"index": 1, "crop": [106, 120, 591, 664], "sourceAnchorX": 363, "sourceGroundY": 663, "targetOffset": [0, 0], "output": "tamagotchi_child_doctor_01.png"},
+        {"index": 2, "crop": [76, 106, 679, 664], "sourceAnchorX": 347, "sourceGroundY": 663, "targetOffset": [0, 0], "output": "tamagotchi_child_doctor_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_feed",
+      "sourceGroup": "tamagotchi_child_feed",
+      "sourceSha256": "18b6fea18c3db0d2b5d94416b820df6006dee5cb151ecd5f46301c27256d2659",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 3709},
+      "scale": {"numerator": 1, "denominator": 25, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [75, 71, 704, 670], "sourceAnchorX": 362, "sourceGroundY": 669, "targetOffset": [0, 0], "output": "tamagotchi_child_feed_00.png"},
+        {"index": 1, "crop": [90, 93, 680, 670], "sourceAnchorX": 346, "sourceGroundY": 669, "targetOffset": [0, 0], "output": "tamagotchi_child_feed_01.png"},
+        {"index": 2, "crop": [70, 71, 614, 670], "sourceAnchorX": 312, "sourceGroundY": 669, "targetOffset": [0, 0], "output": "tamagotchi_child_feed_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_idle",
+      "sourceGroup": "tamagotchi_child_idle",
+      "sourceSha256": "419bfc28da498adb0e6032ff6efbb2faeffd9b4b5892afa8df571580f93df9f9",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 4214},
+      "scale": {"numerator": 1, "denominator": 24, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [91, 70, 637, 661], "sourceAnchorX": 366, "sourceGroundY": 660, "targetOffset": [0, 0], "output": "tamagotchi_child_idle_00.png"},
+        {"index": 1, "crop": [86, 70, 633, 661], "sourceAnchorX": 360, "sourceGroundY": 660, "targetOffset": [0, 0], "output": "tamagotchi_child_idle_01.png"},
+        {"index": 2, "crop": [90, 70, 634, 661], "sourceAnchorX": 343, "sourceGroundY": 660, "targetOffset": [0, 0], "output": "tamagotchi_child_idle_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_play",
+      "sourceGroup": "tamagotchi_child_play",
+      "sourceSha256": "c30059c3573a99b04a7b56ff730893fe2a18724477f38f07b1657ff3c9e956fe",
+      "frameCount": 3,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 7734},
+      "scale": {"numerator": 1, "denominator": 24, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [90, 99, 669, 641], "sourceAnchorX": 400, "sourceGroundY": 640, "targetOffset": [0, 0], "output": "tamagotchi_child_play_00.png"},
+        {"index": 1, "crop": [75, 83, 684, 641], "sourceAnchorX": 363, "sourceGroundY": 640, "targetOffset": [0, 0], "output": "tamagotchi_child_play_01.png"},
+        {"index": 2, "crop": [54, 99, 624, 641], "sourceAnchorX": 365, "sourceGroundY": 640, "targetOffset": [0, 0], "output": "tamagotchi_child_play_02.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_rest",
+      "sourceGroup": "tamagotchi_child_rest",
+      "sourceSha256": "47e230d6632721d890e873a46e69d4e0cda55ff8682f853cd580f696ae56baa8",
+      "frameCount": 2,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 3820},
+      "scale": {"numerator": 1, "denominator": 28, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [94, 153, 794, 781], "sourceAnchorX": 453, "sourceGroundY": 780, "targetOffset": [0, 0], "output": "tamagotchi_child_rest_00.png"},
+        {"index": 1, "crop": [93, 236, 794, 782], "sourceAnchorX": 438, "sourceGroundY": 781, "targetOffset": [0, 0], "output": "tamagotchi_child_rest_01.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_child_sick",
+      "sourceGroup": "tamagotchi_child_sick",
+      "sourceSha256": "1ffc81d57c3aef30e2ffb1acba530c58421c96defc10e0cbad06547e47132c03",
+      "frameCount": 2,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 5475},
+      "scale": {"numerator": 1, "denominator": 32, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [53, 76, 856, 825], "sourceAnchorX": 466, "sourceGroundY": 824, "targetOffset": [0, 0], "output": "tamagotchi_child_sick_00.png"},
+        {"index": 1, "crop": [53, 76, 856, 825], "sourceAnchorX": 441, "sourceGroundY": 824, "targetOffset": [0, 0], "output": "tamagotchi_child_sick_01.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_egg",
+      "sourceGroup": "tamagotchi_egg",
+      "sourceSha256": "a0c6b228e5f776eae8ceb39c675776fb50e176cb0cfcaff37665407382add117",
+      "frameCount": 2,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 4334},
+      "scale": {"numerator": 1, "denominator": 25, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [243, 166, 712, 749], "sourceAnchorX": 477, "sourceGroundY": 748, "targetOffset": [0, 0], "output": "tamagotchi_egg_00.png"},
+        {"index": 1, "crop": [184, 166, 653, 749], "sourceAnchorX": 418, "sourceGroundY": 748, "targetOffset": [0, 0], "output": "tamagotchi_egg_01.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_evolve",
+      "sourceGroup": "tamagotchi_evolve",
+      "sourceSha256": "dd32ba17a37b08ebe066affa0a3ea6156eea6a50d1625a76a11a26bfdb9d6fc2",
+      "frameCount": 4,
+      "targetSize": [32, 32],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 7444},
+      "scale": {"numerator": 1, "denominator": 22, "filter": "nearest"},
+      "placement": {"targetAnchorX": 16, "targetGroundY": 28},
+      "frames": [
+        {"index": 0, "crop": [58, 227, 504, 656], "sourceAnchorX": 293, "sourceGroundY": 655, "targetOffset": [0, 0], "output": "tamagotchi_evolve_00.png"},
+        {"index": 1, "crop": [18, 164, 487, 656], "sourceAnchorX": 271, "sourceGroundY": 655, "targetOffset": [0, 0], "output": "tamagotchi_evolve_01.png"},
+        {"index": 2, "crop": [2, 115, 496, 656], "sourceAnchorX": 267, "sourceGroundY": 655, "targetOffset": [0, 0], "output": "tamagotchi_evolve_02.png"},
+        {"index": 3, "crop": [10, 83, 527, 656], "sourceAnchorX": 269, "sourceGroundY": 655, "targetOffset": [0, 0], "output": "tamagotchi_evolve_03.png"}
+      ]
+    },
+    {
+      "group": "tamagotchi_mess",
+      "sourceGroup": "tamagotchi_mess",
+      "sourceSha256": "1edd8fdaa71472e310edb73c886e99f718f5e104543252567e5df02dbc11ea95",
+      "frameCount": 1,
+      "targetSize": [16, 16],
+      "backgroundRemoval": {"mode": "none"},
+      "alphaThreshold": 128,
+      "palette": {"mode": "map_nearest", "name": "pet", "metric": "srgb_squared", "dither": false, "maxSquaredDistance": 4701},
+      "scale": {"numerator": 1, "denominator": 56, "filter": "nearest"},
+      "placement": {"targetAnchorX": 8, "targetGroundY": 14},
+      "frames": [
+        {"index": 0, "crop": [316, 432, 994, 876], "sourceAnchorX": 654, "sourceGroundY": 875, "targetOffset": [0, 0], "output": "tamagotchi_mess_00.png"}
+      ]
+    }
+  ]
+}

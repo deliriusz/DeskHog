@@ -1,0 +1,19 @@
+/**
+ * @file sprite_tamagotchi_adult_idle_00.h
+ * @brief LVGL sprite generated from tamagotchi_adult_idle_00.png
+ */
+
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "lvgl.h"
+
+// Image descriptor declaration
+extern const lv_img_dsc_t sprite_tamagotchi_adult_idle_00;
+
+#ifdef __cplusplus
+}
+#endif

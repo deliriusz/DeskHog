@@ -226,7 +226,20 @@ extern "C" {
         sprites_c_content += f"}};\n\n"
         sprites_c_content += f"// Number of sprites in the {subdir} animation\n"
         sprites_c_content += f"const uint8_t {subdir}_sprites_count = sizeof({subdir}_sprites) / sizeof({subdir}_sprites[0]);\n\n"
-    
+
+    # Keep all source-generated groups reachable in release builds before a
+    # runtime feature references them. platformio.ini roots this catalog with
+    # -Wl,-u,deskhog_all_sprite_groups, which keeps its descriptor/map graph.
+    sprites_c_content += """// Linker root for every generated sprite group
+const void* const deskhog_all_sprite_groups[] = {
+"""
+    for subdir in sorted(all_sprite_groups.keys()):
+        sprites_c_content += f"    {subdir}_sprites,\n"
+    sprites_c_content += """};
+
+const uint8_t deskhog_all_sprite_groups_count = sizeof(deskhog_all_sprite_groups) / sizeof(deskhog_all_sprite_groups[0]);
+"""
+
     with open(os.path.join(output_dir, "sprites.c"), 'w') as f:
         f.write(sprites_c_content)
     
@@ -247,4 +260,4 @@ try:
 except NameError:
     # When run standalone
     if __name__ == "__main__":
-        main() 
+        main()
