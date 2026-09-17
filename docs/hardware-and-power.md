@@ -44,9 +44,14 @@ Startup configures ESP32 power management with:
 
 All three button GPIOs are configured as wake sources for normal light sleep using their active levels.
 
-For the explicit power-off chord, the firmware disables the deep-sleep GPIO wake source immediately before `esp_deep_sleep_start()`. Wake the device with the hardware reset control.
+For the explicit power-off chord, the firmware disables the deep-sleep GPIO wake
+source, gives each live dynamic card a synchronous best-effort pre-sleep hook,
+then calls `esp_deep_sleep_start()`. The Tamagotchi hook advances local time and
+flushes its NVS record without waiting for Wi-Fi or SNTP; a failed flush is logged
+and does not prevent sleep. Wake the device with the hardware reset control.
 
-The current shutdown path does not explicitly dim the backlight, stop Wi-Fi, or persist transient game state before deep sleep.
+The shutdown path does not explicitly dim the backlight or stop Wi-Fi. Cards with
+no persistent sleep work use the default no-op hook.
 
 ## NeoPixel
 

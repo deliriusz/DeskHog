@@ -132,6 +132,16 @@ void CardController::setDisplayInterface(DisplayInterface* display) {
     }
 }
 
+void CardController::prepareForSleep() {
+    for (auto& [cardType, cards] : dynamicCards) {
+        for (CardInstance& cardInstance : cards) {
+            if (cardInstance.handler != nullptr) {
+                cardInstance.handler->prepareForSleep();
+            }
+        }
+    }
+}
+
 // Create an animation card with the walking sprites
 void CardController::createAnimationCard() {
     if (!displayInterface || !displayInterface->takeMutex(portMAX_DELAY)) {

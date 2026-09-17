@@ -46,6 +46,10 @@ ESPAsyncWebServer also invokes HTTP callbacks in its networking context. Route h
 - `EventQueueTask` is unpinned. Event subscribers run synchronously on that task while the callback-list mutex is held.
 - `portalTask` currently runs on core 1, but it is not the LVGL task and must not directly render UI.
 - The active card's `update()` method runs from `CardController::processUIQueue()` in `lvglTask`.
+- Tamagotchi model mutations and all post-startup state-store writes, including
+  active checkpoints, removal preparation, and explicit pre-sleep flushes, run on
+  `lvglTask`. Portal, OTA, Wi-Fi, and event tasks never call a removable pet card
+  or its store.
 - Long network operations belong on the insight, portal, or OTA workers, not in input handling or rendering.
 - `ClockService` starts SNTP asynchronously in its short `WIFI_CONNECTED` subscriber. It owns no task and never accesses LVGL, NVS, cards, or OTA state; OTA and future cards only sample its epoch/status API.
 

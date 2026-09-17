@@ -39,7 +39,9 @@ During `CardController::initialize()`:
 After `CARD_CONFIG_CHANGED`, the controller dispatches reconciliation to the UI queue. Current reconciliation is a full rebuild, not a fine-grained diff:
 
 1. Save the visible card index.
-2. Call `prepareForRemoval()` on every dynamic card.
+2. Call `prepareForRemoval()` on every dynamic card. `TamagotchiCard` advances
+   same-boot simulation and makes one best-effort state flush here before its
+   root is handed to the navigation stack.
 3. Ask the navigation stack to remove and delete each LVGL root.
 4. Delete each C++ card handler and clear tracking.
 5. Stably sort the new configuration, retain only the first ordered occurrence of every singleton definition, and recreate the effective list.
@@ -50,6 +52,10 @@ Factories add `CardInstance { handler, lvglCard }` to `dynamicCards`, register t
 `allowMultiple` is enforced at both persistence boundaries. The portal rejects a duplicate of any singleton definition before it writes NVS. Runtime reconciliation repeats the policy for crafted or legacy NVS: it creates only the first stable-ordered singleton occurrence, logs the skipped type/position, and never rewrites the stored list. Repeatable definitions remain repeatable.
 
 `TAMAGOTCHI` is a singleton no-config card. Its factory borrows the boot-lifetime `TamagotchiStateStore` and `ClockService`; removing the card changes only the `cards` list and never deletes `tamagotchi/state`.
+
+If that removal flush fails, reconciliation still completes so LVGL ownership and
+handler lifetime remain sound. The last successfully written pet record is kept;
+RAM-only progress from the removed wrapper is not durable.
 
 ## Minimal card contract
 

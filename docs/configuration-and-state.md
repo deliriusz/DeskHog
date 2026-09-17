@@ -54,6 +54,14 @@ state; this prevents the same current-boot elapsed time from being replayed afte
 a reset. Only a valid epoch sampled through `ClockService` may establish a new
 baseline.
 
+The Tamagotchi wrapper is the only post-startup caller of this store, and it does
+so on `lvglTask`. Player-visible hatch/actions and important lifecycle transitions
+attempt an immediate write; active passive changes are checkpointed no more often
+than every five minutes. Failed writes retain the in-memory dirty state and show
+`SAVE!` while the wrapper is live. A later permitted retry, card removal, or
+explicit deep sleep may recover it; neither card removal nor configuration changes
+erase the prior durable `tamagotchi/state` record.
+
 Configuration events:
 
 - Saving Wi-Fi credentials publishes `WIFI_CREDENTIALS_FOUND`.

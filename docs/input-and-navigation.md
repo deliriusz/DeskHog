@@ -19,7 +19,9 @@ The constants currently serve as both indexes into the global `buttons[]` array 
 `lvglTask` runs approximately every 5 ms, but it updates all Bounce2 instances every 50 ms. On each poll:
 
 1. Update all three Bounce2 objects.
-2. Check the center+down deep-sleep chord.
+2. Check the center+down deep-sleep chord. After its two-second hold succeeds,
+   `CardController::prepareForSleep()` synchronously fans out to live dynamic
+   handlers before deep sleep.
 3. If the chord is not active, forward each new `.pressed()` edge to `CardNavigationStack::handleButtonPress()`.
 
 Only press edges are forwarded through `InputHandler`. Cards that need held/released state, such as Paddle, inspect the shared Bounce2 button objects from their UI-task `update()` method.
@@ -81,7 +83,11 @@ Do not create a separate input task for a card; button state and active-card upd
 
 ## Sleep chord
 
-Holding center and down for two seconds calls `esp_deep_sleep_start()`. Individual press behavior is suppressed while the chord is active. The code disables deep-sleep GPIO wake immediately before sleeping, so the documented wake path is the hardware reset control.
+Holding center and down for two seconds has priority over individual button input.
+It disables deep-sleep GPIO wake, asks live dynamic cards to perform their
+nonblocking pre-sleep preparation, then calls `esp_deep_sleep_start()`. Individual
+press behavior is suppressed while the chord is active. The documented wake path
+is the hardware reset control.
 
 GPIO wake sources are also configured for automatic light sleep during normal operation. See [Hardware and power](hardware-and-power.md).
 

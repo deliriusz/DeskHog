@@ -18,6 +18,9 @@ namespace {
 constexpr uint16_t kCardWidth = 233;
 constexpr uint16_t kCardHeight = 135;
 constexpr uint32_t kModelUpdateIntervalMs = 1000;
+static_assert(TamagotchiConstants::PERSISTENCE_CHECKPOINT_INTERVAL_SECONDS <=
+                  std::numeric_limits<uint32_t>::max() / 1000UL,
+              "Tamagotchi persistence checkpoint milliseconds must fit uint32_t");
 
 constexpr uint32_t kEggDurationMs = 900;
 constexpr uint32_t kIdleDurationMs = 900;
@@ -154,6 +157,7 @@ TamagotchiCard::TamagotchiCard(lv_obj_t* parent, TamagotchiStateStore& stateStor
                            : TamagotchiInteractionMode::Normal),
       _selectedAction(TamagotchiAction::Feed),
       _immediateSaveRequested(initialSession.persistenceDirty),
+      _lastPersistenceAttemptMillis(_lastAdvanceMillis),
       _currentVisual(PetVisual::None),
       _oneShotVisual(PetVisual::None),
       _oneShotDeadlineMillis(0),
@@ -189,7 +193,11 @@ bool TamagotchiCard::handleButtonPress(uint8_t buttonIndex) {
     expireTimedUi(nowMillis);
 
     const bool selectorWasOpen = _interactionMode == TamagotchiInteractionMode::ActionSelector;
-    advanceFromMillis(nowMillis);
+    const AdvanceResult advance = advanceFromMillis(nowMillis);
+    const bool persistenceTriggered = requiresImmediateSave(advance);
+    if (persistenceTriggered) {
+        requestImmediateSave();
+    }
 
     const TamagotchiState& state = _model.getState();
     const bool staleEggMode = _interactionMode == TamagotchiInteractionMode::Egg &&
@@ -211,13 +219,19 @@ bool TamagotchiCard::handleButtonPress(uint8_t buttonIndex) {
         if (_interactionMode == TamagotchiInteractionMode::ActionSelector) {
             setInteractionMode(TamagotchiInteractionMode::Normal);
         }
-        renderModel(nowMillis, false);
         if (selectorWasOpen) {
+            if (persistenceTriggered) {
+                saveWithClockBaseline(true);
+            }
+            renderModel(nowMillis, false);
             return true;
         }
     }
 
     if (staleEggMode && buttonIndex == Input::BUTTON_CENTER) {
+        if (persistenceTriggered) {
+            saveWithClockBaseline(true);
+        }
         renderModel(nowMillis, false);
         return true;
     }
@@ -225,6 +239,10 @@ bool TamagotchiCard::handleButtonPress(uint8_t buttonIndex) {
     switch (_interactionMode) {
     case TamagotchiInteractionMode::Egg:
         if (buttonIndex != Input::BUTTON_CENTER) {
+            if (persistenceTriggered) {
+                saveWithClockBaseline(true);
+                renderModel(nowMillis, false);
+            }
             return false;
         }
 
@@ -237,19 +255,27 @@ bool TamagotchiCard::handleButtonPress(uint8_t buttonIndex) {
             recordModelChanges(changes);
             setInteractionMode(TamagotchiInteractionMode::Normal);
             requestImmediateSave();
-            renderModel(nowMillis, false);
             setTransientResultText("HATCHED", kResultDurationMs, nowMillis);
-            renderStatus(_model.getState());
+            saveWithClockBaseline(true);
+            renderModel(nowMillis, false);
             return true;
         }
 
     case TamagotchiInteractionMode::Normal:
         if (buttonIndex != Input::BUTTON_CENTER) {
+            if (persistenceTriggered) {
+                saveWithClockBaseline(true);
+                renderModel(nowMillis, false);
+            }
             return false;
         }
 
         if (_oneShotVisual == PetVisual::Evolve) {
             setTransientResultText("GROWING", kEvolveDurationMs, nowMillis);
+            if (persistenceTriggered) {
+                saveWithClockBaseline(true);
+                renderModel(nowMillis, false);
+            }
             return true;
         }
 
@@ -259,19 +285,35 @@ bool TamagotchiCard::handleButtonPress(uint8_t buttonIndex) {
             lv_label_set_text(_resultLabel, "");
         }
         setInteractionMode(TamagotchiInteractionMode::ActionSelector);
+        if (persistenceTriggered) {
+            saveWithClockBaseline(true);
+            renderModel(nowMillis, false);
+        }
         return true;
 
     case TamagotchiInteractionMode::ActionSelector:
         if (buttonIndex == Input::BUTTON_UP) {
             moveSelection(-1);
+            if (persistenceTriggered) {
+                saveWithClockBaseline(true);
+                renderModel(nowMillis, false);
+            }
             return true;
         }
         if (buttonIndex == Input::BUTTON_DOWN) {
             moveSelection(1);
+            if (persistenceTriggered) {
+                saveWithClockBaseline(true);
+                renderModel(nowMillis, false);
+            }
             return true;
         }
 
-        executeSelectedAction(nowMillis);
+        const bool actionApplied = executeSelectedAction(nowMillis);
+        if (persistenceTriggered || actionApplied) {
+            saveWithClockBaseline(true);
+        }
+        renderModel(nowMillis, false);
         return true;
     }
 
@@ -288,9 +330,29 @@ bool TamagotchiCard::update() {
 
     if (static_cast<uint32_t>(nowMillis - _lastModelUpdateMillis) >=
         kModelUpdateIntervalMs) {
+        const bool firstActiveUpdate =
+            static_cast<uint32_t>(_lastModelUpdateMillis + kModelUpdateIntervalMs) ==
+            _lastAdvanceMillis;
         _lastModelUpdateMillis = nowMillis;
-        advanceFromMillis(nowMillis);
-        tryApplyOfflineCatchUp();
+        const AdvanceResult advance = advanceFromMillis(nowMillis);
+        const bool catchUpAttempted = tryApplyOfflineCatchUp();
+
+        if (!catchUpAttempted) {
+            if (requiresImmediateSave(advance)) {
+                requestImmediateSave();
+                saveWithClockBaseline(true);
+            } else if (firstActiveUpdate && _persistenceDirty && _immediateSaveRequested) {
+                saveWithClockBaseline(true);
+            } else {
+                constexpr uint32_t checkpointIntervalMillis =
+                    TamagotchiConstants::PERSISTENCE_CHECKPOINT_INTERVAL_SECONDS * 1000UL;
+                if (hasUnsavedState() &&
+                    static_cast<uint32_t>(nowMillis - _lastPersistenceAttemptMillis) >=
+                        checkpointIntervalMillis) {
+                    saveWithClockBaseline(false);
+                }
+            }
+        }
 
         const TamagotchiState& state = _model.getState();
         const bool evolvedFromChild =
@@ -317,7 +379,10 @@ void TamagotchiCard::prepareForRemoval() {
         return;
     }
 
-    if (isValidObject(_petImage)) {
+    advanceFromMillis(millis());
+    saveWithClockBaseline(true);
+
+    if (_petImage != nullptr && isValidObject(_petImage)) {
         stopPetAnimation(_petImage);
     }
 
@@ -326,8 +391,20 @@ void TamagotchiCard::prepareForRemoval() {
     _resultDeadlineMillis = 0;
     _resultText[0] = '\0';
     _currentVisual = PetVisual::None;
+    _interactionMode = TamagotchiInteractionMode::Normal;
+    _selectedAction = TamagotchiAction::Feed;
+    _pendingRenderChanges = TamagotchiModelChange::None;
     _preparedForRemoval = true;
     clearUiPointers();
+}
+
+void TamagotchiCard::prepareForSleep() {
+    if (_preparedForRemoval) {
+        return;
+    }
+
+    advanceFromMillis(millis());
+    saveWithClockBaseline(true);
 }
 
 bool TamagotchiCard::deadlineReached(uint32_t nowMillis, uint32_t deadlineMillis) {
@@ -552,7 +629,10 @@ void TamagotchiCard::clearUiPointers() {
     _hintLabel = nullptr;
 }
 
-void TamagotchiCard::advanceFromMillis(uint32_t nowMillis) {
+TamagotchiCard::AdvanceResult TamagotchiCard::advanceFromMillis(uint32_t nowMillis) {
+    AdvanceResult result;
+    result.stageBefore = _model.getState().stage;
+
     const uint32_t elapsedMillis = nowMillis - _lastAdvanceMillis;
     _lastAdvanceMillis = nowMillis;
 
@@ -561,7 +641,7 @@ void TamagotchiCard::advanceFromMillis(uint32_t nowMillis) {
     const uint64_t elapsedSeconds = elapsedWithRemainder / 1000;
     _millisRemainder = static_cast<uint32_t>(elapsedWithRemainder % 1000);
     if (elapsedSeconds == 0) {
-        return;
+        return result;
     }
 
     if (std::numeric_limits<uint64_t>::max() - _sameBootAppliedSeconds < elapsedSeconds) {
@@ -570,92 +650,110 @@ void TamagotchiCard::advanceFromMillis(uint32_t nowMillis) {
         _sameBootAppliedSeconds += elapsedSeconds;
     }
 
-    const bool stageChangeAlreadyPending =
-        hasModelChange(_pendingRenderChanges, TamagotchiModelChange::Stage);
-    if (!stageChangeAlreadyPending) {
-        _stageBeforeLastAdvance = _model.getState().stage;
+    result.changes = _model.advanceBy(elapsedSeconds);
+    if (hasModelChange(result.changes, TamagotchiModelChange::Stage) &&
+        !hasModelChange(_pendingRenderChanges, TamagotchiModelChange::Stage)) {
+        _stageBeforeLastAdvance = result.stageBefore;
     }
-    recordModelChanges(_model.advanceBy(elapsedSeconds));
+    recordModelChanges(result.changes);
+    return result;
 }
 
-void TamagotchiCard::tryApplyOfflineCatchUp() {
+bool TamagotchiCard::tryApplyOfflineCatchUp() {
     if (_catchUpState != OfflineCatchUpState::PendingClock) {
-        return;
+        return false;
     }
-
-    const uint32_t nowMillis = millis();
-    advanceFromMillis(nowMillis);
 
     time_t clockEpoch = 0;
     if (!_clockService.tryGetEpoch(clockEpoch) || clockEpoch < 0) {
-        return;
+        return false;
     }
 
-    const uint64_t nowEpoch = static_cast<uint64_t>(clockEpoch);
-    if (_pendingBaselineEpoch == TamagotchiConstants::NO_CLOCK_EPOCH) {
-        recordModelChanges(_model.setLastUpdatedEpoch(nowEpoch));
-        _catchUpState = OfflineCatchUpState::RebaselinedWithoutHistory;
-    } else if (nowEpoch < _pendingBaselineEpoch) {
-        recordModelChanges(_model.setLastUpdatedEpoch(nowEpoch));
-        _catchUpState = OfflineCatchUpState::RebaselinedAfterBackwardClock;
-    } else {
-        const uint64_t rawEpochElapsed = nowEpoch - _pendingBaselineEpoch;
-        const uint64_t unappliedSeconds =
-            rawEpochElapsed > _sameBootAppliedSeconds
-                ? rawEpochElapsed - _sameBootAppliedSeconds
-                : 0;
-        const uint64_t catchUpSeconds =
-            unappliedSeconds > TamagotchiConstants::MAX_OFFLINE_CATCH_UP_SECONDS
-                ? TamagotchiConstants::MAX_OFFLINE_CATCH_UP_SECONDS
-                : unappliedSeconds;
-
-        if (catchUpSeconds != 0) {
-            if (!hasModelChange(_pendingRenderChanges, TamagotchiModelChange::Stage)) {
-                _stageBeforeLastAdvance = _model.getState().stage;
-            }
-            recordModelChanges(_model.advanceBy(catchUpSeconds));
-        }
-        recordModelChanges(_model.setLastUpdatedEpoch(nowEpoch));
-        _catchUpState = OfflineCatchUpState::Applied;
-    }
-
-    _timeUnknown = false;
     saveWithClockBaseline(true);
+    return true;
 }
 
 bool TamagotchiCard::saveWithClockBaseline(bool force) {
-    if (!force && !_persistenceDirty && !_model.isDirty()) {
+    const uint32_t nowMillis = millis();
+    advanceFromMillis(nowMillis);
+
+    if (!force && !hasUnsavedState()) {
         return true;
     }
 
-    advanceFromMillis(millis());
-
     time_t clockEpoch = 0;
+    const bool hasValidEpoch =
+        _clockService.tryGetEpoch(clockEpoch) && clockEpoch >= static_cast<time_t>(0);
     if (_catchUpState == OfflineCatchUpState::PendingClock) {
-        if (_clockService.tryGetEpoch(clockEpoch) && clockEpoch >= 0) {
-            // A pending session must complete its once-only catch-up before it can
-            // save a trusted baseline; otherwise it could replay same-boot time.
-            tryApplyOfflineCatchUp();
-            return !_persistenceDirty && !_saveFailed;
-        }
-
-        if (!_clockService.tryGetEpoch(clockEpoch)) {
+        if (!hasValidEpoch) {
             recordModelChanges(_model.setLastUpdatedEpoch(TamagotchiConstants::NO_CLOCK_EPOCH));
+        } else {
+            const uint64_t nowEpoch = static_cast<uint64_t>(clockEpoch);
+            if (_pendingBaselineEpoch == TamagotchiConstants::NO_CLOCK_EPOCH) {
+                recordModelChanges(_model.setLastUpdatedEpoch(nowEpoch));
+                _catchUpState = OfflineCatchUpState::RebaselinedWithoutHistory;
+            } else if (nowEpoch < _pendingBaselineEpoch) {
+                recordModelChanges(_model.setLastUpdatedEpoch(nowEpoch));
+                _catchUpState = OfflineCatchUpState::RebaselinedAfterBackwardClock;
+            } else {
+                const uint64_t rawEpochElapsed = nowEpoch - _pendingBaselineEpoch;
+                const uint64_t unappliedSeconds =
+                    rawEpochElapsed > _sameBootAppliedSeconds
+                        ? rawEpochElapsed - _sameBootAppliedSeconds
+                        : 0;
+                const uint64_t catchUpSeconds =
+                    unappliedSeconds > TamagotchiConstants::MAX_OFFLINE_CATCH_UP_SECONDS
+                        ? TamagotchiConstants::MAX_OFFLINE_CATCH_UP_SECONDS
+                        : unappliedSeconds;
+
+                if (catchUpSeconds != 0) {
+                    const TamagotchiStage stageBeforeCatchUp = _model.getState().stage;
+                    const TamagotchiModelChange catchUpChanges =
+                        _model.advanceBy(catchUpSeconds);
+                    if (hasModelChange(catchUpChanges, TamagotchiModelChange::Stage) &&
+                        !hasModelChange(_pendingRenderChanges, TamagotchiModelChange::Stage)) {
+                        _stageBeforeLastAdvance = stageBeforeCatchUp;
+                    }
+                    recordModelChanges(catchUpChanges);
+                }
+                recordModelChanges(_model.setLastUpdatedEpoch(nowEpoch));
+                _catchUpState = OfflineCatchUpState::Applied;
+            }
         }
-    } else if (_clockService.tryGetEpoch(clockEpoch) && clockEpoch >= 0) {
+    } else if (hasValidEpoch) {
         recordModelChanges(_model.setLastUpdatedEpoch(static_cast<uint64_t>(clockEpoch)));
+    } else if (_model.isDirty()) {
+        recordModelChanges(_model.setLastUpdatedEpoch(TamagotchiConstants::NO_CLOCK_EPOCH));
     }
+
+    _timeUnknown = !hasValidEpoch;
 
     if (_stateStore.save(_model.getState())) {
         _model.markPersisted();
         _persistenceDirty = false;
+        _immediateSaveRequested = false;
         _saveFailed = false;
+        _lastPersistenceAttemptMillis = nowMillis;
         return true;
     }
 
+    Serial.println("TamagotchiCard: state-save");
     _persistenceDirty = true;
     _saveFailed = true;
+    _lastPersistenceAttemptMillis = nowMillis;
     return false;
+}
+
+bool TamagotchiCard::hasUnsavedState() const {
+    return _persistenceDirty || _immediateSaveRequested || _model.isDirty();
+}
+
+bool TamagotchiCard::requiresImmediateSave(const AdvanceResult& advance) const {
+    return hasModelChange(advance.changes, TamagotchiModelChange::MessState) ||
+           hasModelChange(advance.changes, TamagotchiModelChange::SickState) ||
+           (hasModelChange(advance.changes, TamagotchiModelChange::Stage) &&
+            advance.stageBefore == TamagotchiStage::Child &&
+            _model.getState().stage == TamagotchiStage::Adult);
 }
 
 void TamagotchiCard::recordModelChanges(TamagotchiModelChange changes) {
@@ -664,7 +762,6 @@ void TamagotchiCard::recordModelChanges(TamagotchiModelChange changes) {
     }
 
     _pendingRenderChanges |= changes;
-    _persistenceDirty = true;
 }
 
 void TamagotchiCard::renderModel(uint32_t nowMillis, bool force) {
@@ -1075,18 +1172,17 @@ void TamagotchiCard::moveSelection(int8_t direction) {
     renderInteractionUi();
 }
 
-void TamagotchiCard::executeSelectedAction(uint32_t nowMillis) {
+bool TamagotchiCard::executeSelectedAction(uint32_t nowMillis) {
     const TamagotchiAction action = _selectedAction;
     if (!isSelectableAction(action)) {
         setInteractionMode(TamagotchiInteractionMode::Normal);
         setTransientResult(action, TamagotchiActionResult::InvalidAction, nowMillis);
-        return;
+        return false;
     }
 
     const TamagotchiActionOutcome outcome = _model.performAction(action);
     recordModelChanges(outcome.changes);
     setInteractionMode(TamagotchiInteractionMode::Normal);
-    renderModel(nowMillis, false);
 
     if (outcome.result == TamagotchiActionResult::Applied) {
         requestImmediateSave();
@@ -1094,7 +1190,7 @@ void TamagotchiCard::executeSelectedAction(uint32_t nowMillis) {
     }
 
     setTransientResult(action, outcome.result, nowMillis);
-    renderStatus(_model.getState());
+    return outcome.result == TamagotchiActionResult::Applied;
 }
 
 void TamagotchiCard::requestImmediateSave() {

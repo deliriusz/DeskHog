@@ -19,6 +19,7 @@ public:
     bool handleButtonPress(uint8_t buttonIndex) override;
     bool update() override;
     void prepareForRemoval() override;
+    void prepareForSleep() override;
 
 private:
     enum class TamagotchiInteractionMode : uint8_t {
@@ -70,6 +71,11 @@ private:
         bool initialized = false;
     };
 
+    struct AdvanceResult {
+        TamagotchiModelChange changes = TamagotchiModelChange::None;
+        TamagotchiStage stageBefore = TamagotchiStage::Egg;
+    };
+
     static InitialSession loadInitialSession(TamagotchiStateStore& stateStore);
 
     TamagotchiCard(lv_obj_t* parent, TamagotchiStateStore& stateStore,
@@ -82,9 +88,11 @@ private:
     void destroyUnownedUi();
     void clearUiPointers();
 
-    void advanceFromMillis(uint32_t nowMillis);
-    void tryApplyOfflineCatchUp();
+    AdvanceResult advanceFromMillis(uint32_t nowMillis);
+    bool tryApplyOfflineCatchUp();
     bool saveWithClockBaseline(bool force);
+    bool hasUnsavedState() const;
+    bool requiresImmediateSave(const AdvanceResult& advance) const;
     void recordModelChanges(TamagotchiModelChange changes);
 
     void renderModel(uint32_t nowMillis, bool force);
@@ -103,7 +111,7 @@ private:
     void startActionVisual(TamagotchiAction action, uint32_t nowMillis);
     void setInteractionMode(TamagotchiInteractionMode mode);
     void moveSelection(int8_t direction);
-    void executeSelectedAction(uint32_t nowMillis);
+    bool executeSelectedAction(uint32_t nowMillis);
     void requestImmediateSave();
     void setTransientResult(TamagotchiAction action, TamagotchiActionResult result,
                             uint32_t nowMillis);
@@ -132,6 +140,7 @@ private:
     TamagotchiInteractionMode _interactionMode;
     TamagotchiAction _selectedAction;
     bool _immediateSaveRequested;
+    uint32_t _lastPersistenceAttemptMillis;
 
     PetVisual _currentVisual;
     PetVisual _oneShotVisual;

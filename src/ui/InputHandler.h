@@ -26,6 +26,14 @@ public:
      * not delete its LVGL object in its destructor after this is called.
      */
     virtual void prepareForRemoval() {}
+
+    /**
+     * @brief Called synchronously before an explicit deep-sleep transition.
+     *
+     * Cards with volatile persistent state can flush it here. The default keeps
+     * existing cards free of sleep-specific work.
+     */
+    virtual void prepareForSleep() {}
     
     /**
      * @brief Update method for cards that need regular updates (e.g., games)
@@ -36,4 +44,4 @@ public:
      * @return true if the card needs continuous updates, false to stop updates
      */
     virtual bool update() { return false; }
-}; 
+};

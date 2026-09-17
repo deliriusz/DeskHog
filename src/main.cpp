@@ -151,10 +151,13 @@ void lvglHandlerTask(void* parameter) {
                 } else {
                     if (millis() - powerOffPressStartTime >= 2000) { // Held for 2 seconds
                         Serial.println("Simultaneous CENTER and DOWN hold for 2s detected. Entering deep sleep.");
-                        // Optional: Turn off display backlight or other peripherals before sleep
-                        // displayInterface->setBacklight(0); // Example if such a function exists
-			esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_GPIO);
+                        esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_GPIO);
+                        if (cardController != nullptr) {
+                            cardController->prepareForSleep();
+                        }
                         esp_deep_sleep_start();
+                        Serial.println("Deep sleep start returned unexpectedly.");
+                        powerOffPressStartTime = 0;
                     }
                 }
             } else {

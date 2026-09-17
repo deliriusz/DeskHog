@@ -153,6 +153,12 @@ public:
      * Should be called regularly from the LVGL handler task.
      */
     void processUIQueue();
+
+    /**
+     * @brief Gives live dynamic cards one synchronous chance to flush state
+     * before explicit deep sleep. Must run on the LVGL task.
+     */
+    void prepareForSleep();
     
     /**
      * @brief Thread-safe method to dispatch UI updates to the LVGL task
