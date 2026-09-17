@@ -42,7 +42,7 @@ After a write, `commit()` closes and reopens all three Preferences instances. Th
 
 `ConfigManager::getCardConfigs()` treats `cards/config_list` as untrusted input. It accepts only an array of objects with an exact known string type and an integral `int` order; optional `config` and `name` must be short strings when present. Malformed entries are skipped by stored-array index without rewriting NVS. Negative, duplicate, and gapped legacy orders are retained for `CardController`'s deterministic stable-sort/filter pass.
 
-`saveCardConfigs()` rejects unknown enum values, JSON construction/serialization overflow, oversized lists, and short NVS writes. It publishes `CARD_CONFIG_CHANGED` only after the full write succeeds. If the event queue is full after persistence, the write still succeeds and the drop is logged.
+`saveCardConfigs()` rejects unknown enum values, oversized lists or fields, JSON construction/serialization overflow, and short NVS writes. It publishes `CARD_CONFIG_CHANGED` only after the full write succeeds. If the event queue is full after persistence, the write still succeeds and the drop is logged.
 
 ### Tamagotchi epoch baseline
 

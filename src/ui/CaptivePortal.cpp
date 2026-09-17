@@ -4,6 +4,7 @@
 #include "EventQueue.h"
 #include "OtaManager.h" // Required for OtaManager interaction
 #include "ui/CardController.h" // Required for CardController interaction
+#include "config/JsonEnvelope.h"
 #include "html_portal.h"  // For portal HTML
 #include <ArduinoJson.h>  // For JSON responses
 #include <pgmspace.h> // For PROGMEM
@@ -932,6 +933,10 @@ void CaptivePortal::handleSaveConfiguredCards(AsyncWebServerRequest *request) {
     }
     if (!document.is<JsonArray>()) {
         fail(400, "Card configuration must be an array", "invalid_root");
+        return;
+    }
+    if (!isSingleJsonArray(body->buffer, body->expected)) {
+        fail(400, "Invalid JSON format", "invalid_json");
         return;
     }
 

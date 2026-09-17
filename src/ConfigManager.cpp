@@ -1,6 +1,7 @@
 #include "ConfigManager.h"
 #include "SystemController.h"
 #include <ArduinoJson.h>
+#include "config/JsonEnvelope.h"
 
 ConfigManager::ConfigManager() {
     // Constructor
@@ -205,9 +206,15 @@ std::vector<CardConfig> ConfigManager::getCardConfigs() {
     DynamicJsonDocument doc(CARD_CONFIG_JSON_CAPACITY_BYTES);
     DeserializationError error = deserializeJson(doc, jsonString);
     
-    if (error || doc.overflowed() || !doc.is<JsonArray>()) {
+    if (error || doc.overflowed()) {
         Serial.printf("Failed to parse card configs JSON: %s\n", error.c_str());
         return configs; // Return empty vector on parse error
+    }
+    if (!doc.is<JsonArray>() ||
+        !isSingleJsonArray(reinterpret_cast<const uint8_t*>(jsonString.c_str()),
+                           jsonString.length())) {
+        Serial.println("Failed to parse card configs JSON: invalid root or trailing data");
+        return configs;
     }
     
     // NVS is an untrusted ingestion boundary. Keep valid legacy ordering exactly
@@ -300,6 +307,11 @@ bool ConfigManager::saveCardConfigs(const std::vector<CardConfig>& configs) {
         const String type = cardTypeToString(config.type);
         if (type == "UNKNOWN") {
             Serial.println("Refusing to save an unknown card type");
+            return false;
+        }
+        if (config.config.length() > MAX_CARD_FIELD_BYTES ||
+            config.name.length() > MAX_CARD_FIELD_BYTES) {
+            Serial.println("Refusing to save oversized card configuration field");
             return false;
         }
 
