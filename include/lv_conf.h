@@ -415,7 +415,7 @@
 
 #define LV_USE_ANIMIMG    1 // Migrated from old config (was 1)
 #define LV_USE_ARC        0 // Migrated from old config (was 0)
-#define LV_USE_BAR        0 // Migrated from old config (was 0)
+#define LV_USE_BAR        1 // Required for Tamagotchi need bars
 #define LV_USE_BUTTON     0 // Migrated from old config (was 0, mapped from BTN)
 #define LV_USE_BUTTONMATRIX 1 // Enable for animation support
 #define LV_USE_CALENDAR   0 // Migrated from old config (was 0)
