@@ -34,6 +34,7 @@
 #include "EventQueue.h"
 #include "esp_partition.h" // Include for partition functions
 #include "OtaManager.h"
+#include "tamagotchi/TamagotchiStateStore.h"
 #include <esp_sleep.h> // Added for deep sleep functionality
 #include <esp_pm.h> // Added for power management
 
@@ -65,6 +66,7 @@ PostHogClient* posthogClient;
 EventQueue* eventQueue; // Add global EventQueue
 NeoPixelController* neoPixelController;  // Renamed from neoPixelManager
 OtaManager* otaManager;
+TamagotchiStateStore tamagotchiStateStore;
 
 // Task handles
 TaskHandle_t wifiTask;
@@ -251,6 +253,8 @@ void setup() {
     // Initialize config manager with event queue
     configManager = new ConfigManager(*eventQueue);
     configManager->begin();
+
+    tamagotchiStateStore.begin();
     
     // Initialize PostHog client with event queue
     posthogClient = new PostHogClient(*configManager, *eventQueue);
