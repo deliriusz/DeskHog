@@ -23,6 +23,10 @@
 class ConfigManager {
 public:
     static const int NO_TEAM_ID = -1;  // Sentinel value for no team ID
+    static constexpr size_t CARD_CONFIG_JSON_CAPACITY_BYTES = 2048;
+    static constexpr size_t MAX_CARD_CONFIG_BODY_BYTES = 2048;
+    static constexpr size_t MAX_CONFIGURED_CARDS = 16;
+    static constexpr size_t MAX_CARD_FIELD_BYTES = 64;
 
     /**
      * @brief Default constructor

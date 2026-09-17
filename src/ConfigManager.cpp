@@ -202,61 +202,147 @@ std::vector<CardConfig> ConfigManager::getCardConfigs() {
     String jsonString = _cardPrefs.getString("config_list", "[]");
     
     // Parse JSON
-    DynamicJsonDocument doc(2048);
+    DynamicJsonDocument doc(CARD_CONFIG_JSON_CAPACITY_BYTES);
     DeserializationError error = deserializeJson(doc, jsonString);
     
-    if (error) {
+    if (error || doc.overflowed() || !doc.is<JsonArray>()) {
         Serial.printf("Failed to parse card configs JSON: %s\n", error.c_str());
         return configs; // Return empty vector on parse error
     }
     
-    // Convert JSON array to vector of CardConfig
+    // NVS is an untrusted ingestion boundary. Keep valid legacy ordering exactly
+    // as stored, but never reinterpret malformed values as an INSIGHT card.
     JsonArray array = doc.as<JsonArray>();
-    for (JsonVariant v : array) {
-        JsonObject obj = v.as<JsonObject>();
-        if (obj.containsKey("type") && obj.containsKey("config") && obj.containsKey("order")) {
-            CardConfig config;
-            config.type = stringToCardType(obj["type"].as<String>());
-            config.config = obj["config"].as<String>();
-            config.order = obj["order"].as<int>();
-            config.name = obj["name"].as<String>();
-            configs.push_back(config);
+    for (size_t index = 0; index < array.size(); ++index) {
+        JsonVariant value = array[index];
+        if (!value.is<JsonObject>()) {
+            Serial.printf("Skipping stored card config at index %u: object\n",
+                          static_cast<unsigned>(index));
+            continue;
         }
+
+        JsonObject obj = value.as<JsonObject>();
+        JsonVariant typeValue = obj["type"];
+        if (!typeValue.is<const char*>()) {
+            Serial.printf("Skipping stored card config at index %u: type\n",
+                          static_cast<unsigned>(index));
+            continue;
+        }
+
+        CardType type;
+        if (!tryStringToCardType(String(typeValue.as<const char*>()), type)) {
+            Serial.printf("Skipping stored card config at index %u: unknown type\n",
+                          static_cast<unsigned>(index));
+            continue;
+        }
+
+        JsonVariant orderValue = obj["order"];
+        if (!orderValue.is<int>()) {
+            Serial.printf("Skipping stored card config at index %u: order\n",
+                          static_cast<unsigned>(index));
+            continue;
+        }
+
+        String configValue;
+        if (obj.containsKey("config")) {
+            JsonVariant storedConfig = obj["config"];
+            if (!storedConfig.is<const char*>()) {
+                Serial.printf("Skipping stored card config at index %u: config\n",
+                              static_cast<unsigned>(index));
+                continue;
+            }
+            configValue = storedConfig.as<const char*>();
+            if (configValue.length() > MAX_CARD_FIELD_BYTES) {
+                Serial.printf("Skipping stored card config at index %u: config length\n",
+                              static_cast<unsigned>(index));
+                continue;
+            }
+        }
+
+        String nameValue;
+        if (obj.containsKey("name")) {
+            JsonVariant storedName = obj["name"];
+            if (!storedName.is<const char*>()) {
+                Serial.printf("Skipping stored card config at index %u: name\n",
+                              static_cast<unsigned>(index));
+                continue;
+            }
+            nameValue = storedName.as<const char*>();
+            if (nameValue.length() > MAX_CARD_FIELD_BYTES) {
+                Serial.printf("Skipping stored card config at index %u: name length\n",
+                              static_cast<unsigned>(index));
+                continue;
+            }
+        }
+
+        configs.emplace_back(type, configValue, orderValue.as<int>(), nameValue);
     }
     
     return configs;
 }
 
 bool ConfigManager::saveCardConfigs(const std::vector<CardConfig>& configs) {
+    if (configs.size() > MAX_CONFIGURED_CARDS) {
+        Serial.println("Refusing to save too many card configurations");
+        return false;
+    }
+
     // Create JSON document
-    DynamicJsonDocument doc(2048);
+    DynamicJsonDocument doc(CARD_CONFIG_JSON_CAPACITY_BYTES);
     JsonArray array = doc.to<JsonArray>();
+    if (array.isNull() || doc.overflowed()) {
+        Serial.println("Failed to create card configuration JSON document");
+        return false;
+    }
     
     // Convert vector to JSON array
     for (const CardConfig& config : configs) {
+        const String type = cardTypeToString(config.type);
+        if (type == "UNKNOWN") {
+            Serial.println("Refusing to save an unknown card type");
+            return false;
+        }
+
         JsonObject obj = array.createNestedObject();
-        obj["type"] = cardTypeToString(config.type);
+        if (obj.isNull()) {
+            Serial.println("Failed to create card config JSON object");
+            return false;
+        }
+
+        obj["type"] = type;
         obj["config"] = config.config;
         obj["order"] = config.order;
         obj["name"] = config.name;
+
+        if (doc.overflowed()) {
+            Serial.println("Card config JSON document overflowed");
+            return false;
+        }
     }
     
     // Serialize to string
     String jsonString;
-    if (serializeJson(doc, jsonString) == 0) {
+    const size_t serializedBytes = serializeJson(doc, jsonString);
+    if (serializedBytes == 0 || serializedBytes > MAX_CARD_CONFIG_BODY_BYTES) {
         Serial.println("Failed to serialize card configs to JSON");
         return false;
     }
     
     // Save to preferences
-    _cardPrefs.putString("config_list", jsonString);
+    const size_t bytesWritten = _cardPrefs.putString("config_list", jsonString);
+    if (bytesWritten != serializedBytes) {
+        Serial.println("Failed to write full card configuration to storage");
+        return false;
+    }
     
     // Commit changes
     commit();
     
     // Publish event if event queue is available
     if (_eventQueue != nullptr) {
-        _eventQueue->publishEvent(EventType::CARD_CONFIG_CHANGED, "");
+        if (!_eventQueue->publishEvent(EventType::CARD_CONFIG_CHANGED, "")) {
+            Serial.println("Failed to publish card configuration change event");
+        }
     }
     
     return true;

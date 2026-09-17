@@ -13,7 +13,8 @@ enum class CardType {
     HELLO_WORLD,  ///< Simple hello world card
     FLAPPY_HOG,   ///< Flappy Hog game card
     QUESTION,     ///< Question trivia card
-    PADDLE        ///< Paddle game card
+    PADDLE,       ///< Paddle game card
+    TAMAGOTCHI    ///< Local desk companion card
     // New card types can be added here
 };
 
@@ -85,21 +86,56 @@ inline String cardTypeToString(CardType type) {
         case CardType::FLAPPY_HOG: return "FLAPPY_HOG";
         case CardType::QUESTION: return "QUESTION";
         case CardType::PADDLE: return "PADDLE";
+        case CardType::TAMAGOTCHI: return "TAMAGOTCHI";
         default: return "UNKNOWN";
     }
 }
 
 /**
- * @brief Helper function to convert string to CardType enum
+ * @brief Converts an exact stable string to a CardType enum.
  * @param str The string to convert
- * @return CardType enum value, defaults to INSIGHT if string not recognized
+ * @param result Receives the type only when conversion succeeds
+ * @return true when str is a known stable card type string
+ */
+inline bool tryStringToCardType(const String& str, CardType& result) {
+    if (str == "INSIGHT") {
+        result = CardType::INSIGHT;
+        return true;
+    }
+    if (str == "FRIEND") {
+        result = CardType::FRIEND;
+        return true;
+    }
+    if (str == "HELLO_WORLD") {
+        result = CardType::HELLO_WORLD;
+        return true;
+    }
+    if (str == "FLAPPY_HOG") {
+        result = CardType::FLAPPY_HOG;
+        return true;
+    }
+    if (str == "QUESTION") {
+        result = CardType::QUESTION;
+        return true;
+    }
+    if (str == "PADDLE") {
+        result = CardType::PADDLE;
+        return true;
+    }
+    if (str == "TAMAGOTCHI") {
+        result = CardType::TAMAGOTCHI;
+        return true;
+    }
+    return false;
+}
+
+/**
+ * @brief Legacy conversion wrapper retaining the historic INSIGHT fallback.
+ *
+ * New persistence and HTTP parsing boundaries must use tryStringToCardType().
  */
 inline CardType stringToCardType(const String& str) {
-    if (str == "INSIGHT") return CardType::INSIGHT;
-    if (str == "FRIEND") return CardType::FRIEND;
-    if (str == "HELLO_WORLD") return CardType::HELLO_WORLD;
-    if (str == "FLAPPY_HOG") return CardType::FLAPPY_HOG;
-    if (str == "QUESTION") return CardType::QUESTION;
-    if (str == "PADDLE") return CardType::PADDLE;
-    return CardType::INSIGHT; // Default fallback
+    CardType result = CardType::INSIGHT;
+    tryStringToCardType(str, result);
+    return result;
 }

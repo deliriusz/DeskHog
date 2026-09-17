@@ -25,7 +25,7 @@
 | `region` | String | `us` when absent; otherwise stored without validation |
 | `config_list` | JSON string | Empty card list when absent |
 
-The card JSON document capacity is 2048 bytes. Each entry contains:
+Card configuration uses a 2048-byte JSON document capacity and a separate 2048-byte serialized request/storage limit. There may be at most 16 configured cards, and each optional `config` or `name` field is at most 64 bytes. Each entry contains:
 
 ```json
 {
@@ -39,6 +39,10 @@ The card JSON document capacity is 2048 bytes. Each entry contains:
 ## Persistence behavior
 
 After a write, `commit()` closes and reopens all three Preferences instances. This means every write briefly affects the availability of all namespaces; callers should not assume concurrent access is safe.
+
+`ConfigManager::getCardConfigs()` treats `cards/config_list` as untrusted input. It accepts only an array of objects with an exact known string type and an integral `int` order; optional `config` and `name` must be short strings when present. Malformed entries are skipped by stored-array index without rewriting NVS. Negative, duplicate, and gapped legacy orders are retained for `CardController`'s deterministic stable-sort/filter pass.
+
+`saveCardConfigs()` rejects unknown enum values, JSON construction/serialization overflow, oversized lists, and short NVS writes. It publishes `CARD_CONFIG_CHANGED` only after the full write succeeds. If the event queue is full after persistence, the write still succeeds and the drop is logged.
 
 ### Tamagotchi epoch baseline
 
@@ -56,6 +60,8 @@ Configuration events:
 - Clearing Wi-Fi credentials publishes `NEED_WIFI_CREDENTIALS`.
 - `checkWiFiCredentialsAndPublish()` emits one of those events at boot.
 - Saving card configuration publishes `CARD_CONFIG_CHANGED`.
+
+The card list never stores Tamagotchi model data. `TAMAGOTCHI` has an empty card config; its independently versioned `tamagotchi/state` record survives card removal and re-addition.
 
 Changing team ID, API key, or region recalculates `ApiState`; it does not publish a domain event.
 

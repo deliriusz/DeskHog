@@ -7,10 +7,35 @@
 #include "html_portal.h"  // For portal HTML
 #include <ArduinoJson.h>  // For JSON responses
 #include <pgmspace.h> // For PROGMEM
+#include <cctype>
+#include <cstdlib>
+#include <limits>
 #include <vector> // For std::vector (action queue)
 
 // Max size for the action queue
 const size_t MAX_ACTION_QUEUE_SIZE = 5; // Define a reasonable limit
+
+namespace {
+
+bool hasNonWhitespace(const String& value) {
+    for (size_t index = 0; index < value.length(); ++index) {
+        if (!std::isspace(static_cast<unsigned char>(value.charAt(index)))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool containsCardType(const std::vector<CardType>& types, CardType type) {
+    for (CardType candidate : types) {
+        if (candidate == type) {
+            return true;
+        }
+    }
+    return false;
+}
+
+} // namespace
 
 // Action queue structure
 struct QueuedAction { // Defined globally in this .cpp file
@@ -62,6 +87,7 @@ void CaptivePortal::begin() {
     _server.on("/save-wifi", HTTP_OPTIONS, std::bind(&CaptivePortal::handleCorsPreflight, this, std::placeholders::_1));
     _server.on("/save-device-config", HTTP_OPTIONS, std::bind(&CaptivePortal::handleCorsPreflight, this, std::placeholders::_1));
     _server.on("/start-update", HTTP_OPTIONS, std::bind(&CaptivePortal::handleCorsPreflight, this, std::placeholders::_1));
+    _server.on("/api/cards/configured", HTTP_OPTIONS, std::bind(&CaptivePortal::handleCorsPreflight, this, std::placeholders::_1));
     // _server.on("/check-update", HTTP_OPTIONS, std::bind(&CaptivePortal::handleCorsPreflight, this, std::placeholders::_1)); // Usually GET, but if POST later
     // _server.on("/update-status", HTTP_OPTIONS, std::bind(&CaptivePortal::handleCorsPreflight, this, std::placeholders::_1)); // Usually GET
 
@@ -94,14 +120,10 @@ void CaptivePortal::begin() {
     _server.on("/api/cards/configured", HTTP_POST, 
               std::bind(&CaptivePortal::handleSaveConfiguredCards, this, std::placeholders::_1),
               NULL,
-              [](AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total){
-                  // Store body data as a parameter for later processing
-                  request->_tempObject = malloc(len + 1);
-                  if(request->_tempObject != NULL){
-                      memcpy(request->_tempObject, data, len);
-                      ((char*)request->_tempObject)[len] = 0;
-                  }
-              });
+              std::bind(&CaptivePortal::handleConfiguredCardsBody, this,
+                        std::placeholders::_1, std::placeholders::_2,
+                        std::placeholders::_3, std::placeholders::_4,
+                        std::placeholders::_5));
 
     // OTA Update actions
     _server.on("/check-update", HTTP_GET, std::bind(&CaptivePortal::handleCheckUpdate, this, std::placeholders::_1));
@@ -715,62 +737,349 @@ void CaptivePortal::handleGetConfiguredCards(AsyncWebServerRequest *request) {
     request->send(response);
 }
 
-void CaptivePortal::handleSaveConfiguredCards(AsyncWebServerRequest *request) {
-    bool success = false;
-    String message = "Failed to save card configuration";
+void CaptivePortal::handleConfiguredCardsBody(
+    AsyncWebServerRequest* request,
+    uint8_t* data,
+    size_t len,
+    size_t index,
+    size_t total
+) {
+    CardConfigRequestBody* body = static_cast<CardConfigRequestBody*>(request->_tempObject);
 
-    // Check if we have body data stored by the body handler
-    if (request->_tempObject != NULL) {
-        String body = String((char*)request->_tempObject);
-        free(request->_tempObject); // Clean up the allocated memory
-        request->_tempObject = NULL;
-        
-        Serial.printf("Received card config body: %s\n", body.c_str());
-        
-        DynamicJsonDocument doc(2048);
-        DeserializationError error = deserializeJson(doc, body);
-        
-        if (!error && doc.is<JsonArray>()) {
-            JsonArray cardsArray = doc.as<JsonArray>();
-            std::vector<CardConfig> cardConfigs;
-            
-            // Parse each card configuration
-            for (JsonVariant v : cardsArray) {
-                JsonObject obj = v.as<JsonObject>();
-                if (obj.containsKey("type") && obj.containsKey("order")) {
-                    CardConfig config;
-                    config.type = stringToCardType(obj["type"].as<String>());
-                    config.config = obj.containsKey("config") ? obj["config"].as<String>() : "";
-                    config.order = obj["order"].as<int>();
-                    config.name = obj.containsKey("name") ? obj["name"].as<String>() : "";
-                    cardConfigs.push_back(config);
-                }
+    if (index == 0) {
+        if (body != nullptr) {
+            if (body->status == CardConfigBodyStatus::Receiving ||
+                body->status == CardConfigBodyStatus::Complete) {
+                body->status = CardConfigBodyStatus::InvalidChunk;
             }
-            
-            // Save to ConfigManager
-            if (_configManager.saveCardConfigs(cardConfigs)) {
-                success = true;
-                message = "Card configuration saved successfully";
-                Serial.printf("Successfully saved %d card configurations\n", cardConfigs.size());
-            } else {
-                message = "Failed to save to storage";
-            }
-        } else {
-            message = "Invalid JSON format";
-            Serial.printf("JSON parse error: %s\n", error.c_str());
+            return;
         }
-    } else {
-        message = "No configuration data provided";
-        Serial.println("No body data received in card config save");
+
+        body = static_cast<CardConfigRequestBody*>(malloc(sizeof(CardConfigRequestBody)));
+        if (body == nullptr) {
+            // No sentinel can be stored. The terminal handler distinguishes this
+            // from an empty request with request->contentLength().
+            return;
+        }
+
+        body->expected = total;
+        body->received = 0;
+        body->buffer = nullptr;
+        body->status = CardConfigBodyStatus::Receiving;
+        request->_tempObject = body;
+
+        if (total == 0) {
+            body->status = CardConfigBodyStatus::Empty;
+            return;
+        }
+        if (total > ConfigManager::MAX_CARD_CONFIG_BODY_BYTES ||
+            total > std::numeric_limits<size_t>::max() - 1) {
+            body->status = CardConfigBodyStatus::TooLarge;
+            return;
+        }
+
+        body->buffer = static_cast<uint8_t*>(malloc(total + 1));
+        if (body->buffer == nullptr) {
+            body->status = CardConfigBodyStatus::AllocationFailed;
+            return;
+        }
+    } else if (body == nullptr) {
+        // A non-first chunk cannot safely establish request state.
+        return;
     }
 
-    DynamicJsonDocument responseDoc(256);
-    responseDoc["success"] = success;
+    if (body->status != CardConfigBodyStatus::Receiving) {
+        if (body->status == CardConfigBodyStatus::Complete) {
+            body->status = CardConfigBodyStatus::InvalidChunk;
+        }
+        return;
+    }
+
+    if (total != body->expected || index != body->received || index > body->expected ||
+        len > body->expected - index || (len > 0 && data == nullptr)) {
+        body->status = CardConfigBodyStatus::InvalidChunk;
+        return;
+    }
+
+    if (len > 0) {
+        memcpy(body->buffer + index, data, len);
+    }
+    body->received += len;
+
+    if (body->received == body->expected) {
+        body->buffer[body->expected] = '\0';
+        body->status = CardConfigBodyStatus::Complete;
+    }
+}
+
+void CaptivePortal::sendCardConfigResponse(
+    AsyncWebServerRequest* request,
+    int statusCode,
+    const char* message,
+    const char* errorCode,
+    int index,
+    const char* field,
+    int count
+) {
+    StaticJsonDocument<384> responseDoc;
+    responseDoc["success"] = (statusCode == 200);
     responseDoc["message"] = message;
-    
+    if (count >= 0) {
+        responseDoc["count"] = count;
+    }
+    if (errorCode != nullptr) {
+        JsonObject error = responseDoc.createNestedObject("error");
+        error["code"] = errorCode;
+        if (index >= 0) {
+            error["index"] = index;
+        }
+        if (field != nullptr) {
+            error["field"] = field;
+        }
+    }
+
     String responseJson;
-    serializeJson(responseDoc, responseJson);
-    AsyncWebServerResponse *response = request->beginResponse(200, "application/json", responseJson);
+    if (!responseJson.reserve(384) || serializeJson(responseDoc, responseJson) == 0) {
+        AsyncWebServerResponse* fallback = request->beginResponse(
+            500, "application/json",
+            "{\"success\":false,\"message\":\"Failed to create response\",\"error\":{\"code\":\"response_allocation_failed\"}}");
+        if (fallback != nullptr) {
+            fallback->addHeader("Access-Control-Allow-Origin", "*");
+            request->send(fallback);
+        }
+        return;
+    }
+
+    AsyncWebServerResponse* response = request->beginResponse(
+        statusCode, "application/json", responseJson);
+    if (response == nullptr) {
+        AsyncWebServerResponse* fallback = request->beginResponse(
+            500, "application/json",
+            "{\"success\":false,\"message\":\"Failed to create response\",\"error\":{\"code\":\"response_allocation_failed\"}}");
+        if (fallback != nullptr) {
+            fallback->addHeader("Access-Control-Allow-Origin", "*");
+            request->send(fallback);
+        }
+        return;
+    }
     response->addHeader("Access-Control-Allow-Origin", "*");
     request->send(response);
+}
+
+void CaptivePortal::handleSaveConfiguredCards(AsyncWebServerRequest *request) {
+    CardConfigRequestBody* body = static_cast<CardConfigRequestBody*>(request->_tempObject);
+    request->_tempObject = nullptr;
+
+    const auto releaseBody = [body]() {
+        if (body == nullptr) {
+            return;
+        }
+        free(body->buffer);
+        free(body);
+    };
+    const auto fail = [&](int statusCode, const char* message, const char* errorCode,
+                          int index = -1, const char* field = nullptr) {
+        releaseBody();
+        sendCardConfigResponse(request, statusCode, message, errorCode, index, field);
+    };
+
+    const String contentType = request->contentType();
+    if (!contentType.isEmpty() && !contentType.equalsIgnoreCase("application/json")) {
+        fail(415, "Card configuration must use application/json", "unsupported_media_type");
+        return;
+    }
+
+    if (body == nullptr) {
+        if (request->contentLength() == 0) {
+            sendCardConfigResponse(request, 400, "No configuration data provided", "empty_body");
+        } else {
+            sendCardConfigResponse(request, 500, "Failed to receive configuration body",
+                                   "body_allocation_failed");
+        }
+        return;
+    }
+
+    switch (body->status) {
+    case CardConfigBodyStatus::Empty:
+        fail(400, "No configuration data provided", "empty_body");
+        return;
+    case CardConfigBodyStatus::TooLarge:
+        fail(413, "Card configuration payload is too large", "payload_too_large");
+        return;
+    case CardConfigBodyStatus::AllocationFailed:
+        fail(500, "Failed to receive configuration body", "body_allocation_failed");
+        return;
+    case CardConfigBodyStatus::InvalidChunk:
+    case CardConfigBodyStatus::Receiving:
+        fail(400, "Invalid configuration request body", "invalid_json");
+        return;
+    case CardConfigBodyStatus::Complete:
+        break;
+    }
+
+    if (body->buffer == nullptr || body->received != body->expected ||
+        body->expected > ConfigManager::MAX_CARD_CONFIG_BODY_BYTES) {
+        fail(400, "Invalid configuration request body", "invalid_json");
+        return;
+    }
+
+    DynamicJsonDocument document(ConfigManager::CARD_CONFIG_JSON_CAPACITY_BYTES);
+    const DeserializationError parseError = deserializeJson(
+        document, body->buffer, body->expected);
+    if (parseError || document.overflowed()) {
+        fail(400, "Invalid JSON format", "invalid_json");
+        return;
+    }
+    if (!document.is<JsonArray>()) {
+        fail(400, "Card configuration must be an array", "invalid_root");
+        return;
+    }
+
+    JsonArray cardsArray = document.as<JsonArray>();
+    if (cardsArray.size() > ConfigManager::MAX_CONFIGURED_CARDS) {
+        fail(400, "Too many configured cards", "too_many_cards");
+        return;
+    }
+
+    std::vector<CardConfig> candidateConfigs;
+    candidateConfigs.reserve(cardsArray.size());
+    std::vector<CardType> singletonTypes;
+    singletonTypes.reserve(cardsArray.size());
+    bool seenOrders[ConfigManager::MAX_CONFIGURED_CARDS] = {};
+    int duplicateOrderIndex = -1;
+
+    for (size_t entryIndex = 0; entryIndex < cardsArray.size(); ++entryIndex) {
+        JsonVariant entry = cardsArray[entryIndex];
+        if (!entry.is<JsonObject>()) {
+            fail(400, "Card configuration entry must be an object", "invalid_entry",
+                 static_cast<int>(entryIndex));
+            return;
+        }
+
+        JsonObject object = entry.as<JsonObject>();
+        if (!object.containsKey("type")) {
+            fail(400, "Card type is required", "missing_field", static_cast<int>(entryIndex), "type");
+            return;
+        }
+        if (!object.containsKey("order")) {
+            fail(400, "Card order is required", "missing_field", static_cast<int>(entryIndex), "order");
+            return;
+        }
+
+        JsonVariant typeValue = object["type"];
+        if (!typeValue.is<const char*>()) {
+            fail(400, "Card type must be a string", "invalid_field_type",
+                 static_cast<int>(entryIndex), "type");
+            return;
+        }
+        JsonVariant orderValue = object["order"];
+        if (!orderValue.is<int>()) {
+            fail(400, "Card order must be an integer", "invalid_field_type",
+                 static_cast<int>(entryIndex), "order");
+            return;
+        }
+
+        CardType type;
+        if (!tryStringToCardType(String(typeValue.as<const char*>()), type)) {
+            fail(400, "Unknown card type", "unknown_card_type",
+                 static_cast<int>(entryIndex), "type");
+            return;
+        }
+
+        CardDefinition definition;
+        if (!_cardController.tryGetCardDefinition(type, definition)) {
+            fail(400, "Card type is not registered", "unregistered_card_type",
+                 static_cast<int>(entryIndex), "type");
+            return;
+        }
+
+        const int order = orderValue.as<int>();
+        if (order < 0 || static_cast<size_t>(order) >= cardsArray.size()) {
+            fail(400, "Card order is invalid", "invalid_order",
+                 static_cast<int>(entryIndex), "order");
+            return;
+        }
+        if (seenOrders[order]) {
+            duplicateOrderIndex = static_cast<int>(entryIndex);
+        } else {
+            seenOrders[order] = true;
+        }
+
+        String configValue;
+        if (object.containsKey("config")) {
+            JsonVariant config = object["config"];
+            if (!config.is<const char*>()) {
+                fail(400, "Card configuration must be a string", "invalid_field_type",
+                     static_cast<int>(entryIndex), "config");
+                return;
+            }
+            configValue = config.as<const char*>();
+            if (configValue.length() > ConfigManager::MAX_CARD_FIELD_BYTES) {
+                fail(400, "Card configuration is invalid", "invalid_config",
+                     static_cast<int>(entryIndex), "config");
+                return;
+            }
+        }
+        if (definition.needsConfigInput) {
+            if (configValue.isEmpty() || !hasNonWhitespace(configValue)) {
+                fail(400, "Card configuration is invalid", "invalid_config",
+                     static_cast<int>(entryIndex), "config");
+                return;
+            }
+        } else if (!configValue.isEmpty()) {
+            fail(400, "Card configuration is invalid", "invalid_config",
+                 static_cast<int>(entryIndex), "config");
+            return;
+        }
+
+        String nameValue;
+        if (object.containsKey("name")) {
+            JsonVariant name = object["name"];
+            if (!name.is<const char*>()) {
+                fail(400, "Card name must be a string", "invalid_field_type",
+                     static_cast<int>(entryIndex), "name");
+                return;
+            }
+            nameValue = name.as<const char*>();
+            if (nameValue.length() > ConfigManager::MAX_CARD_FIELD_BYTES) {
+                fail(400, "Card name is invalid", "invalid_name",
+                     static_cast<int>(entryIndex), "name");
+                return;
+            }
+        }
+
+        if (!definition.allowMultiple) {
+            if (containsCardType(singletonTypes, type)) {
+                fail(400, "Card type may only appear once", "duplicate_singleton",
+                     static_cast<int>(entryIndex), "type");
+                return;
+            }
+            singletonTypes.push_back(type);
+        }
+
+        candidateConfigs.emplace_back(type, configValue, order, nameValue);
+    }
+
+    if (duplicateOrderIndex >= 0) {
+        fail(400, "Card order is invalid", "invalid_order", duplicateOrderIndex, "order");
+        return;
+    }
+    for (size_t order = 0; order < cardsArray.size(); ++order) {
+        if (!seenOrders[order]) {
+            fail(400, "Card order is invalid", "invalid_order", -1, "order");
+            return;
+        }
+    }
+
+    // Strings in candidateConfigs own their values, so JSON and the detached
+    // request buffer can be released before the one bounded storage write.
+    releaseBody();
+    if (!_configManager.saveCardConfigs(candidateConfigs)) {
+        sendCardConfigResponse(request, 500, "Failed to save card configuration",
+                               "storage_write_failed");
+        return;
+    }
+
+    sendCardConfigResponse(request, 200, "Card configuration saved successfully", nullptr,
+                           -1, nullptr, static_cast<int>(candidateConfigs.size()));
 }

@@ -102,6 +102,22 @@ private:
     bool _last_action_was_success;
     String _last_action_message;
 
+    enum class CardConfigBodyStatus : uint8_t {
+        Receiving,
+        Complete,
+        Empty,
+        TooLarge,
+        AllocationFailed,
+        InvalidChunk
+    };
+
+    struct CardConfigRequestBody {
+        size_t expected;
+        size_t received;
+        uint8_t* buffer;
+        CardConfigBodyStatus status;
+    };
+
     /**
      * @brief Serve the main portal page
      * Sends static HTML from html_portal.h
@@ -157,6 +173,30 @@ private:
      * Accepts JSON array of CardConfig objects
      */
     void handleSaveConfiguredCards(AsyncWebServerRequest *request);
+
+    /**
+     * @brief Assemble the bounded JSON body for POST /api/cards/configured.
+     */
+    void handleConfiguredCardsBody(
+        AsyncWebServerRequest* request,
+        uint8_t* data,
+        size_t len,
+        size_t index,
+        size_t total
+    );
+
+    /**
+     * @brief Send a consistent JSON response for card-configuration writes.
+     */
+    void sendCardConfigResponse(
+        AsyncWebServerRequest* request,
+        int statusCode,
+        const char* message,
+        const char* errorCode = nullptr,
+        int index = -1,
+        const char* field = nullptr,
+        int count = -1
+    );
 
     /**
      * @brief Handle captive portal detection

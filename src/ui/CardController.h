@@ -14,6 +14,7 @@
 #include "ui/FriendCard.h"
 #include "ui/examples/HelloWorldCard.h"
 #include "ui/FlappyHogCard.h"
+#include "ui/TamagotchiCard.h"
 #include "hardware/DisplayInterface.h"
 #include "EventQueue.h"
 #include "config/CardConfig.h"
@@ -40,6 +41,8 @@ public:
      * @param wifiInterface Reference to WiFi interface
      * @param posthogClient Reference to PostHog client
      * @param eventQueue Reference to event queue for state changes
+     * @param tamagotchiStateStore Boot-lifetime Tamagotchi persistence store
+     * @param clockService Boot-lifetime network clock service
      */
     CardController(
         lv_obj_t* screen,
@@ -48,7 +51,9 @@ public:
         ConfigManager& configManager,
         WiFiInterface& wifiInterface,
         PostHogClient& posthogClient,
-        EventQueue& eventQueue
+        EventQueue& eventQueue,
+        TamagotchiStateStore& tamagotchiStateStore,
+        ClockService& clockService
     );
     
     /**
@@ -116,6 +121,12 @@ public:
     std::vector<CardDefinition> getCardDefinitions() const;
 
     /**
+     * @brief Looks up one registered definition without exposing vector storage.
+     * @return true and assigns result when the type is registered
+     */
+    bool tryGetCardDefinition(CardType type, CardDefinition& result) const;
+
+    /**
      * @brief Register an available card type with its definition and factory function
      * @param definition The card definition including metadata and factory function
      */
@@ -152,7 +163,7 @@ public:
      * Queues UI operations to be executed on the LVGL thread.
      * Handles queue overflow by discarding updates if queue is full.
      */
-    void dispatchToLVGLTask(std::function<void()> update_func, bool to_front = false);
+    bool dispatchToLVGLTask(std::function<void()> update_func, bool to_front = false);
 
 private:
     // Screen reference
@@ -165,6 +176,8 @@ private:
     WiFiInterface& wifiInterface;  ///< WiFi interface reference
     PostHogClient& posthogClient;  ///< PostHog client reference
     EventQueue& eventQueue;        ///< Event queue reference
+    TamagotchiStateStore& tamagotchiStateStore; ///< Tamagotchi state store reference
+    ClockService& clockService;    ///< Network clock service reference
     
     // UI Components
     CardNavigationStack* cardStack;     ///< Navigation stack for cards
@@ -226,4 +239,4 @@ private:
      * @param newConfigs New card configuration from storage
      */
     void reconcileCards(const std::vector<CardConfig>& newConfigs);
-}; 
+};

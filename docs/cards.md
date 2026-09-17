@@ -12,6 +12,7 @@ Cards are full-screen LVGL views arranged vertically by `CardNavigationStack`. `
 | `FLAPPY_HOG` | `FlappyHogCard` | No | None |
 | `QUESTION` | `QuestionCard` | No | None |
 | `PADDLE` | `PaddleCard` | No | None |
+| `TAMAGOTCHI` | `TamagotchiCard` | No | None; state is separate |
 
 `ProvisioningCard` is not configurable. It is created first, kept at stack index 0, and cannot be removed through the portal.
 
@@ -23,7 +24,7 @@ Cards are full-screen LVGL views arranged vertically by `CardNavigationStack`. `
 - `CardDefinition`: catalog metadata and a factory function used by firmware and exposed to the portal.
 - `CardConfig`: one persisted card instance with `type`, `config`, `order`, and `name`.
 
-Every `CardType` must be handled by both `cardTypeToString()` and `stringToCardType()`. These strings are persisted in NVS and exchanged with the portal, so changing one is a storage/API migration.
+Every `CardType` must be handled by `cardTypeToString()` and `tryStringToCardType()`. These strings are persisted in NVS and exchanged with the portal, so changing one is a storage/API migration. `tryStringToCardType()` accepts only exact stable spellings and leaves its output unchanged on failure. The older `stringToCardType()` fallback remains only for source compatibility; HTTP and NVS ingestion must use the non-fallback API.
 
 ## Creation and reconciliation
 
@@ -33,7 +34,7 @@ During `CardController::initialize()`:
 2. Built-in `CardDefinition` factories are registered.
 3. `CardNavigationStack` and the permanent provisioning card are created.
 4. Stored `CardConfig` values are loaded.
-5. Configured cards are sorted by `order` and created through their factories.
+5. Configured cards are stably sorted by `order`, defensively filtered through the registered definitions, and created through their factories.
 
 After `CARD_CONFIG_CHANGED`, the controller dispatches reconciliation to the UI queue. Current reconciliation is a full rebuild, not a fine-grained diff:
 
@@ -41,10 +42,14 @@ After `CARD_CONFIG_CHANGED`, the controller dispatches reconciliation to the UI 
 2. Call `prepareForRemoval()` on every dynamic card.
 3. Ask the navigation stack to remove and delete each LVGL root.
 4. Delete each C++ card handler and clear tracking.
-5. Sort the new configuration and recreate every card.
+5. Stably sort the new configuration, retain only the first ordered occurrence of every singleton definition, and recreate the effective list.
 6. Rebuild navigation indicators and select the new or previous position.
 
 Factories add `CardInstance { handler, lvglCard }` to `dynamicCards`, register the handler with the navigation stack, and return the LVGL root for insertion.
+
+`allowMultiple` is enforced at both persistence boundaries. The portal rejects a duplicate of any singleton definition before it writes NVS. Runtime reconciliation repeats the policy for crafted or legacy NVS: it creates only the first stable-ordered singleton occurrence, logs the skipped type/position, and never rewrites the stored list. Repeatable definitions remain repeatable.
+
+`TAMAGOTCHI` is a singleton no-config card. Its factory borrows the boot-lifetime `TamagotchiStateStore` and `ClockService`; removing the card changes only the `cards` list and never deletes `tamagotchi/state`.
 
 ## Minimal card contract
 
@@ -73,7 +78,7 @@ The constructor should create the root and children, apply explicit sizing/style
 ## Adding a card type
 
 1. Add the value to `CardType` in `src/config/CardConfig.h`.
-2. Add matching cases to `cardTypeToString()` and `stringToCardType()`.
+2. Add a matching `cardTypeToString()` case and exact `tryStringToCardType()` branch.
 3. Create focused `.h` and `.cpp` files, normally under `src/ui/`.
 4. Inherit from `InputHandler`; override button or update methods only as needed.
 5. Include the card in `src/ui/CardController.h`.
@@ -148,7 +153,6 @@ Queued callbacks and event subscriptions may outlive a card. The current `EventQ
 
 ## Current caveats
 
-- `allowMultiple` and configuration validity are primarily portal metadata; the firmware save handler does not fully enforce every definition constraint.
-- Unknown persisted type strings currently fall back to `INSIGHT`.
-- `CardController` comments still mention diffing, but the implementation rebuilds all configurable cards.
+- Unknown or malformed persisted entries are skipped, never converted to `INSIGHT`, and are not repaired behind the user's back.
+- Reconciliation remains a full configurable-card rebuild, not an in-place diff.
 - Saving a newly fetched insight title republishes `CARD_CONFIG_CHANGED`, which can cause a card-stack rebuild.

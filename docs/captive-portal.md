@@ -23,7 +23,7 @@ The current `POST /api/actions/...` routes use a portal-specific `std::vector<Qu
 
 This action queue is independent of both `EventQueue` and the LVGL UI callback queue.
 
-Not every state-changing route uses it. `POST /api/cards/configured` currently parses the request and writes NVS directly from the HTTP callback. New slow operations should use an owning worker rather than extending that synchronous pattern.
+Not every state-changing route uses it. `POST /api/cards/configured` performs one bounded, synchronous NVS replacement after validating its complete request body. New slow operations should use an owning worker rather than extending that synchronous pattern.
 
 ## Primary routes
 
@@ -72,7 +72,11 @@ The `portal` fields are unreliable with several queued actions: a new request ov
 
 `GET` and `POST /api/cards/configured` exchange arrays containing `type`, `config`, `order`, and `name`. A successful save publishes `CARD_CONFIG_CHANGED`, causing `CardController` to rebuild configurable cards.
 
-The save handler accepts entries that contain `type` and `order`; `config` and `name` default to empty strings. The firmware does not currently enforce all catalog rules such as `allowMultiple`.
+The POST body must be JSON and no larger than 2048 bytes. It is assembled by contiguous offsets before parsing, so chunked requests receive the same validation as single-chunk requests. The root must be an array of at most 16 objects. Every object requires an exact, registered `type` string and an integer `order`; orders must be the contiguous permutation `0..N-1`. Optional `config` and `name` default to empty strings, must be strings of at most 64 bytes when supplied, and `config` must be nonempty/non-whitespace only for definitions that request it. No-config cards, including `TAMAGOTCHI`, require an empty config value.
+
+Singleton policy comes from each registered definition's `allowMultiple` value. A second singleton entry rejects the entire request before NVS is touched; repeatable cards remain allowed. Unknown type strings are never treated as insights.
+
+Successful writes return HTTP 200 with `success`, `message`, and `count`. Validation errors return HTTP 400 with a stable `error.code` and, where applicable, array `index` and field. Oversized payloads return 413, explicit non-JSON media types return 415, and body/storage failures return 500. All responses are JSON and include the permissive CORS header.
 
 ## Captive-portal detection
 
@@ -108,4 +112,4 @@ Compatibility routes remain for `/scan-networks`, `/get-device-config`, `/check-
 - Device-setting validation and the route's misleading save-success behavior are documented in [Configuration and state](configuration-and-state.md).
 - There is currently no portal authentication and CORS is permissive. Assume any client with network access to the device can call its routes.
 - The action vector and status fields are accessed by HTTP and portal-task contexts without an explicit mutex. Avoid widening concurrent access without first adding synchronization.
-- The card JSON body callback should be reviewed before supporting large or chunked request bodies; it currently allocates from the received chunk length.
+- Card-configuration requests are capped at 2048 bytes; errors during body allocation, chunk ordering, bounds checks, or parsing do not write NVS or publish a configuration event.

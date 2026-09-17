@@ -68,13 +68,20 @@ EventQueue* eventQueue; // Add global EventQueue
 NeoPixelController* neoPixelController;  // Renamed from neoPixelManager
 OtaManager* otaManager;
 ClockService* clockService;
-TamagotchiStateStore tamagotchiStateStore;
+TamagotchiStateStore* tamagotchiStateStore;
 
 // Task handles
 TaskHandle_t wifiTask;
 TaskHandle_t portalTask;
 TaskHandle_t insightTask;
 TaskHandle_t neoPixelTask;
+
+[[noreturn]] void haltStartup(const char* component) {
+    Serial.printf("Startup failed: required %s is unavailable\n", component);
+    while (true) {
+        delay(1000);
+    }
+}
 
 // WiFi connection timeout in milliseconds
 #define WIFI_TIMEOUT 30000
@@ -246,35 +253,62 @@ void setup() {
     
     // Initialize event queue first
     eventQueue = new EventQueue(20); // Create queue with capacity for 20 events
+    if (eventQueue == nullptr) {
+        haltStartup("event queue");
+    }
     eventQueue->begin(); // Start event processing
 
     // ClockService subscribes before Wi-Fi can publish WIFI_CONNECTED and remains
     // alive for the entire boot because EventQueue has no unsubscribe API.
     clockService = new ClockService(*eventQueue);
+    if (clockService == nullptr) {
+        haltStartup("clock service");
+    }
     clockService->begin();
     
     // Initialize NeoPixel controller
     neoPixelController = new NeoPixelController();
+    if (neoPixelController == nullptr) {
+        haltStartup("NeoPixel controller");
+    }
     neoPixelController->begin();
     
     // Initialize config manager with event queue
     configManager = new ConfigManager(*eventQueue);
+    if (configManager == nullptr) {
+        haltStartup("configuration manager");
+    }
     configManager->begin();
 
-    tamagotchiStateStore.begin();
+    tamagotchiStateStore = new TamagotchiStateStore();
+    if (tamagotchiStateStore == nullptr) {
+        haltStartup("Tamagotchi state store");
+    }
+    if (!tamagotchiStateStore->begin()) {
+        Serial.println("Tamagotchi state store unavailable; pet state will not persist this boot");
+    }
     
     // Initialize PostHog client with event queue
     posthogClient = new PostHogClient(*configManager, *eventQueue);
+    if (posthogClient == nullptr) {
+        haltStartup("PostHog client");
+    }
     
     // Initialize display manager
     displayInterface = new DisplayInterface(
         SCREEN_WIDTH, SCREEN_HEIGHT, LVGL_BUFFER_ROWS, 
         TFT_CS, TFT_DC, TFT_RST, TFT_BACKLITE
     );
+    if (displayInterface == nullptr) {
+        haltStartup("display interface");
+    }
     displayInterface->begin();
     
     // Initialize WiFi manager with event queue
     wifiInterface = new WiFiInterface(*configManager, *eventQueue);
+    if (wifiInterface == nullptr) {
+        haltStartup("Wi-Fi interface");
+    }
     wifiInterface->begin();
     
     // Initialize buttons
@@ -295,17 +329,28 @@ void setup() {
         *configManager,
         *wifiInterface,
         *posthogClient,
-        *eventQueue
+        *eventQueue,
+        *tamagotchiStateStore,
+        *clockService
     );
+    if (cardController == nullptr) {
+        haltStartup("card controller");
+    }
     
     // Initialize with display interface directly
     cardController->initialize(displayInterface);
     
     // Initialize OtaManager
     otaManager = new OtaManager(CURRENT_FIRMWARE_VERSION, "PostHog", "DeskHog", *clockService);
+    if (otaManager == nullptr) {
+        haltStartup("OTA manager");
+    }
     
     // Initialize captive portal
     captivePortal = new CaptivePortal(*configManager, *wifiInterface, *eventQueue, *otaManager, *cardController);
+    if (captivePortal == nullptr) {
+        haltStartup("captive portal");
+    }
     captivePortal->begin();
     
     // Create task for WiFi operations

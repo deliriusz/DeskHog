@@ -14,7 +14,9 @@ CardController::CardController(
     ConfigManager& configManager,
     WiFiInterface& wifiInterface,
     PostHogClient& posthogClient,
-    EventQueue& eventQueue
+    EventQueue& eventQueue,
+    TamagotchiStateStore& tamagotchiStateStore,
+    ClockService& clockService
 ) : screen(screen),
     screenWidth(screenWidth),
     screenHeight(screenHeight),
@@ -22,6 +24,8 @@ CardController::CardController(
     wifiInterface(wifiInterface),
     posthogClient(posthogClient),
     eventQueue(eventQueue),
+    tamagotchiStateStore(tamagotchiStateStore),
+    clockService(clockService),
     cardStack(nullptr),
     provisioningCard(nullptr),
     animationCard(nullptr),
@@ -204,6 +208,16 @@ std::vector<CardDefinition> CardController::getCardDefinitions() const {
     return registeredCardTypes;
 }
 
+bool CardController::tryGetCardDefinition(CardType type, CardDefinition& result) const {
+    for (const CardDefinition& definition : registeredCardTypes) {
+        if (definition.type == type) {
+            result = definition;
+            return true;
+        }
+    }
+    return false;
+}
+
 void CardController::registerCardType(const CardDefinition& definition) {
     registeredCardTypes.push_back(definition);
 }
@@ -381,6 +395,32 @@ void CardController::initializeCardTypes() {
         return nullptr;
     };
     registerCardType(paddleDef);
+
+    CardDefinition tamagotchiDef;
+    tamagotchiDef.type = CardType::TAMAGOTCHI;
+    tamagotchiDef.name = "Tamagotchi";
+    tamagotchiDef.allowMultiple = false;
+    tamagotchiDef.needsConfigInput = false;
+    tamagotchiDef.configInputLabel = "";
+    tamagotchiDef.uiDescription = "Hatch and care for a tiny desk companion";
+    tamagotchiDef.factory = [this](const String&) -> lv_obj_t* {
+        TamagotchiCard* newCard = new TamagotchiCard(
+            screen, tamagotchiStateStore, clockService);
+        if (newCard == nullptr) {
+            return nullptr;
+        }
+
+        lv_obj_t* cardRoot = newCard->getCard();
+        if (cardRoot == nullptr || !lv_obj_is_valid(cardRoot)) {
+            delete newCard;
+            return nullptr;
+        }
+
+        dynamicCards[CardType::TAMAGOTCHI].push_back({newCard, cardRoot});
+        cardStack->registerInputHandler(cardRoot, newCard);
+        return cardRoot;
+    };
+    registerCardType(tamagotchiDef);
 }
 
 void CardController::handleCardConfigChanged() {
@@ -397,8 +437,52 @@ void CardController::reconcileCards(const std::vector<CardConfig>& newConfigs) {
     if (reconcileInProgress) {
         return;
     }
-    
-    
+
+    // NVS may predate the HTTP validation rules. Sort stably so equal legacy
+    // orders retain stored-array order, and keep only the first singleton.
+    std::vector<CardConfig> effectiveConfigs = newConfigs;
+    std::stable_sort(effectiveConfigs.begin(), effectiveConfigs.end(),
+                     [](const CardConfig& a, const CardConfig& b) {
+                         return a.order < b.order;
+                     });
+
+    std::vector<CardConfig> acceptedConfigs;
+    acceptedConfigs.reserve(effectiveConfigs.size());
+    std::vector<CardType> acceptedSingletonTypes;
+    acceptedSingletonTypes.reserve(effectiveConfigs.size());
+
+    for (size_t index = 0; index < effectiveConfigs.size(); ++index) {
+        const CardConfig& config = effectiveConfigs[index];
+        CardDefinition definition;
+        if (!tryGetCardDefinition(config.type, definition)) {
+            Serial.printf("Card reconciliation: skipping unregistered type %s at position %u\n",
+                          cardTypeToString(config.type).c_str(),
+                          static_cast<unsigned>(index));
+            continue;
+        }
+        if (!definition.factory) {
+            Serial.printf("Card reconciliation: skipping type %s without factory at position %u\n",
+                          cardTypeToString(config.type).c_str(),
+                          static_cast<unsigned>(index));
+            continue;
+        }
+
+        if (!definition.allowMultiple) {
+            const bool alreadyAccepted = std::find(
+                acceptedSingletonTypes.begin(), acceptedSingletonTypes.end(), config.type) !=
+                acceptedSingletonTypes.end();
+            if (alreadyAccepted) {
+                Serial.printf("Card reconciliation: skipping duplicate singleton %s at position %u\n",
+                              cardTypeToString(config.type).c_str(),
+                              static_cast<unsigned>(index));
+                continue;
+            }
+            acceptedSingletonTypes.push_back(config.type);
+        }
+
+        acceptedConfigs.push_back(config);
+    }
+
     // Track the number of cards before reconciliation
     size_t oldCardCount = 0;
     for (const auto& [cardType, cards] : dynamicCards) {
@@ -408,11 +492,21 @@ void CardController::reconcileCards(const std::vector<CardConfig>& newConfigs) {
     reconcileInProgress = true;
     
     // Dispatch the entire reconciliation to the LVGL task to ensure thread safety
-    dispatchToLVGLTask([this, newConfigs, oldCardCount]() {
-        if (!displayInterface || !displayInterface->takeMutex(portMAX_DELAY)) {
-            reconcileInProgress = false;  // Clear flag on failure
+    const bool queued = dispatchToLVGLTask([this, acceptedConfigs, oldCardCount]() {
+        if (!displayInterface || !cardStack) {
+            Serial.println("Card reconciliation: display or card stack unavailable");
+            reconcileInProgress = false;
             return;
         }
+
+        if (!displayInterface->takeMutex(portMAX_DELAY)) {
+            Serial.println("Card reconciliation: failed to take display mutex");
+            reconcileInProgress = false;
+            return;
+        }
+
+        // All paths below own the display mutex and complete through the common
+        // cleanup at the end of this callback.
         
         // Save current card index to restore after reconciliation
         uint8_t savedCardIndex = cardStack ? cardStack->getCurrentIndex() : 0;
@@ -440,36 +534,25 @@ void CardController::reconcileCards(const std::vector<CardConfig>& newConfigs) {
         // Force LVGL to process all pending operations
         lv_refr_now(NULL);
         
-        // Now recreate cards based on new configuration
-        std::vector<CardConfig> sortedConfigs = newConfigs;
-        std::sort(sortedConfigs.begin(), sortedConfigs.end(), 
-                  [](const CardConfig& a, const CardConfig& b) {
-                      return a.order < b.order;
-                  });
-        
         // Track how many cards we've created
         size_t cardsCreated = 0;
         
-        // Check if we have a new card (more configs than before)
-        bool hasNewCard = (sortedConfigs.size() > oldCardCount);
+        // Use only the effective list: skipped legacy duplicates must not look
+        // like newly created cards.
+        bool hasNewCard = (acceptedConfigs.size() > oldCardCount);
         size_t newCardPosition = 0;
         
-        for (size_t i = 0; i < sortedConfigs.size(); i++) {
-            const CardConfig& config = sortedConfigs[i];
-            // Find the registered card type
-            auto it = std::find_if(registeredCardTypes.begin(), registeredCardTypes.end(),
-                                  [&config](const CardDefinition& def) {
-                                      return def.type == config.type;
-                                  });
-            
-            if (it != registeredCardTypes.end() && it->factory) {
+        for (const CardConfig& config : acceptedConfigs) {
+            CardDefinition definition;
+            if (tryGetCardDefinition(config.type, definition) && definition.factory) {
                 // Create the card using the factory function
-                lv_obj_t* cardObj = it->factory(config.config);
+                lv_obj_t* cardObj = definition.factory(config.config);
                 if (cardObj) {
                     cardStack->addCard(cardObj);
                     
-                    // Track position of new card if this is likely the new one
-                    if (hasNewCard && i == sortedConfigs.size() - 1) {
+                    // The latest successfully-created effective card is the
+                    // target for an add operation. Provisioning stays at zero.
+                    if (hasNewCard) {
                         newCardPosition = cardsCreated + 1; // +1 for provisioning card
                     }
                     
@@ -478,9 +561,6 @@ void CardController::reconcileCards(const std::vector<CardConfig>& newConfigs) {
                     Serial.printf("Failed to create card of type %s\n", 
                                  cardTypeToString(config.type).c_str());
                 }
-            } else {
-                Serial.printf("No factory found for card type %s\n", 
-                             cardTypeToString(config.type).c_str());
             }
         }
         
@@ -501,13 +581,18 @@ void CardController::reconcileCards(const std::vector<CardConfig>& newConfigs) {
             uint8_t maxIndex = cardsCreated; // provisioning + created cards - 1
             uint8_t targetIndex = (savedCardIndex <= maxIndex) ? savedCardIndex : maxIndex;
             cardStack->goToCard(targetIndex);
+        } else {
+            cardStack->goToCard(0);
         }
         
-        // Clear the in-progress flag
-        reconcileInProgress = false;
-        
+        // Common cleanup after every successful teardown/rebuild path.
         displayInterface->giveMutex();
+        reconcileInProgress = false;
     }, true); // Use to_front=true for immediate processing
+
+    if (!queued) {
+        reconcileInProgress = false;
+    }
 }
 
 void CardController::initUIQueue() {
@@ -541,16 +626,16 @@ void CardController::processUIQueue() {
     }
 }
 
-void CardController::dispatchToLVGLTask(std::function<void()> update_func, bool to_front) {
+bool CardController::dispatchToLVGLTask(std::function<void()> update_func, bool to_front) {
     if (uiQueue == nullptr) {
         Serial.println("[UI-ERROR] UI Queue not initialized, cannot dispatch UI update.");
-        return;
+        return false;
     }
 
     UICallback* callback = new UICallback(std::move(update_func));
     if (!callback) {
         Serial.println("[UI-CRITICAL] Failed to allocate UICallback for dispatch!");
-        return;
+        return false;
     }
 
     BaseType_t queue_send_result;
@@ -564,7 +649,10 @@ void CardController::dispatchToLVGLTask(std::function<void()> update_func, bool 
         Serial.printf("[UI-WARN] UI queue full/error (send_to_front: %d), update discarded. Core: %d\n", 
                       to_front, xPortGetCoreID());
         delete callback;
+        return false;
     }
+
+    return true;
 }
 
 void CardController::handleCardTitleUpdated(const Event& event) {
@@ -584,4 +672,4 @@ void CardController::handleCardTitleUpdated(const Event& event) {
             break;
         }
     }
-} 
+}
