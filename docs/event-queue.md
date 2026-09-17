@@ -23,7 +23,7 @@ Prefer the smallest payload required by the consumer. Large raw JSON is currentl
 | `WIFI_CREDENTIALS_FOUND` | `ConfigManager`, portal | `WiFiInterface` begins a stored-credential connection |
 | `NEED_WIFI_CREDENTIALS` | `ConfigManager`, Wi-Fi state | `WiFiInterface` starts AP/captive-portal mode |
 | `WIFI_CONNECTING` | `WiFiInterface` | `CardController` updates provisioning status |
-| `WIFI_CONNECTED` | `WiFiInterface` | `CardController` shows connected status |
+| `WIFI_CONNECTED` | `WiFiInterface` | `CardController` shows connected status; boot-lifetime `ClockService` starts asynchronous SNTP |
 | `WIFI_CONNECTION_FAILED` | `WiFiInterface` | `CardController` shows failure status |
 | `WIFI_AP_STARTED` | `WiFiInterface` | `CardController` shows the provisioning QR code |
 | `CARD_CONFIG_CHANGED` | `ConfigManager::saveCardConfigs()` | `CardController` reloads and rebuilds configurable cards |

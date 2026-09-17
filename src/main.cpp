@@ -35,6 +35,7 @@
 #include "esp_partition.h" // Include for partition functions
 #include "OtaManager.h"
 #include "tamagotchi/TamagotchiStateStore.h"
+#include "time/ClockService.h"
 #include <esp_sleep.h> // Added for deep sleep functionality
 #include <esp_pm.h> // Added for power management
 
@@ -66,6 +67,7 @@ PostHogClient* posthogClient;
 EventQueue* eventQueue; // Add global EventQueue
 NeoPixelController* neoPixelController;  // Renamed from neoPixelManager
 OtaManager* otaManager;
+ClockService* clockService;
 TamagotchiStateStore tamagotchiStateStore;
 
 // Task handles
@@ -245,6 +247,11 @@ void setup() {
     // Initialize event queue first
     eventQueue = new EventQueue(20); // Create queue with capacity for 20 events
     eventQueue->begin(); // Start event processing
+
+    // ClockService subscribes before Wi-Fi can publish WIFI_CONNECTED and remains
+    // alive for the entire boot because EventQueue has no unsubscribe API.
+    clockService = new ClockService(*eventQueue);
+    clockService->begin();
     
     // Initialize NeoPixel controller
     neoPixelController = new NeoPixelController();
@@ -295,7 +302,7 @@ void setup() {
     cardController->initialize(displayInterface);
     
     // Initialize OtaManager
-    otaManager = new OtaManager(CURRENT_FIRMWARE_VERSION, "PostHog", "DeskHog");
+    otaManager = new OtaManager(CURRENT_FIRMWARE_VERSION, "PostHog", "DeskHog", *clockService);
     
     // Initialize captive portal
     captivePortal = new CaptivePortal(*configManager, *wifiInterface, *eventQueue, *otaManager, *cardController);

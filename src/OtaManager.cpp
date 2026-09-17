@@ -1,4 +1,6 @@
 #include "OtaManager.h"
+
+#include "time/ClockService.h"
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <Update.h> // For ESP32 Update functions
@@ -76,13 +78,14 @@ struct UpdateTaskParams {
 };
 
 // Constructor
-OtaManager::OtaManager(const String& currentVersion, const String& repoOwner, const String& repoName)
+OtaManager::OtaManager(const String& currentVersion, const String& repoOwner, const String& repoName,
+                       ClockService& clockService)
     : _currentVersion(currentVersion),
       _repoOwner(repoOwner),
       _repoName(repoName),
+      _clockService(clockService),
       _checkTaskHandle(NULL),
-      _updateTaskHandle(NULL),
-      _timeSynced(false) { // Initialize _timeSynced
+      _updateTaskHandle(NULL) {
     _currentStatus.status = UpdateStatus::State::IDLE;
     _currentStatus.message = "Idle";
     _currentStatus.progress = 0;
@@ -461,30 +464,6 @@ UpdateInfo OtaManager::_parseGithubApiResponse(const String& jsonPayload) {
     return info;
 }
 
-bool OtaManager::_ensureTimeSynced() {
-    if (_timeSynced) return true;
-
-    Serial.println("OtaManager: Attempting to sync NTP time...");
-    configTime(0, 0, "pool.ntp.org", "time.nist.gov"); // UTC, no DST offset, NTP servers
-    
-    time_t now = time(nullptr);
-    int retries = 0;
-    while (now < 8 * 3600 * 2) { // Check if time is reasonably after epoch (1 Jan 1970)
-        delay(500);
-        now = time(nullptr);
-        retries++;
-        if (retries > 20) { // Approx 10 seconds timeout
-            Serial.println("OtaManager: NTP time sync failed after retries.");
-            return false;
-        }
-    }
-    struct tm timeinfo;
-    gmtime_r(&now, &timeinfo);
-    Serial.printf("OtaManager: NTP time synced: %s", asctime(&timeinfo));
-    _timeSynced = true;
-    return true;
-}
-
 // Static task runners
 void OtaManager::_checkUpdateTaskRunner(void* pvParameters) {
     Serial.println("DEBUG: _checkUpdateTaskRunner started.");
@@ -498,11 +477,11 @@ void OtaManager::_checkUpdateTaskRunner(void* pvParameters) {
     ESP_ERROR_CHECK(esp_task_wdt_init(&twdt_config_check));
     ESP_ERROR_CHECK(esp_task_wdt_add(NULL)); // Add current task to WDT
 
-    // Perform NTP Sync first
-    if (!self->_ensureTimeSynced()) {
-        // NTP failed. Update status and terminate task.
+    // Wait for the shared service to obtain a valid epoch before TLS.
+    if (!self->_clockService.waitForValidTime(10000)) {
+        // Network time was unavailable. Update status and terminate task.
         UpdateStatus::State ntpErrorState = UpdateStatus::State::ERROR_HTTP_CHECK; // Or a more specific NTP error state if you add one
-        String ntpErrorMessage = "NTP time sync failed. Cannot check for updates.";
+        String ntpErrorMessage = "Waiting for valid network time failed. Cannot check for updates.";
         
         if (self->_dataMutex) {
             if (xSemaphoreTake(self->_dataMutex, portMAX_DELAY) == pdTRUE) {
@@ -511,7 +490,7 @@ void OtaManager::_checkUpdateTaskRunner(void* pvParameters) {
                 self->_lastCheckResult.error = ntpErrorMessage;
                 self->_checkTaskHandle = NULL; // Mark task as complete (failed)
                 xSemaphoreGive(self->_dataMutex);
-                Serial.printf("OtaManager Status Update (NTP Fail in _checkUpdateTaskRunner): [%d] %s\n", 
+                Serial.printf("OtaManager Status Update (time unavailable in _checkUpdateTaskRunner): [%d] %s\n",
                               static_cast<int>(ntpErrorState), ntpErrorMessage.c_str());
             } else {
                 Serial.println("ERROR: _checkUpdateTaskRunner (NTP Fail) failed to take mutex!");
@@ -523,9 +502,9 @@ void OtaManager::_checkUpdateTaskRunner(void* pvParameters) {
         return; // Essential to exit the task here
     }
 
-    // NTP Sync successful, now update status to indicate actual checking is starting
+    // Valid network time is available, so begin the release check.
     // This uses the standard _setUpdateStatus which handles its own mutex and logging.
-    self->_setUpdateStatus(UpdateStatus::State::CHECKING_VERSION, "Checking for updates (post-NTP)...", 0);
+    self->_setUpdateStatus(UpdateStatus::State::CHECKING_VERSION, "Checking for updates...", 0);
 
     String apiUrl = "https://api.github.com/repos/" + self->_repoOwner + "/" + self->_repoName + "/releases";
     String jsonPayload = self->_performHttpsRequest(apiUrl.c_str(), self->_githubApiRootCa);

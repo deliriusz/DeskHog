@@ -9,6 +9,7 @@
 | `wifi_config` | SSID, password, credential-present flag, PostHog team ID, API key, and region |
 | `cards` | JSON card array in `config_list` |
 | `insights` | Opened for compatibility but not currently used by the active card configuration path |
+| `tamagotchi` | Versioned local pet state in `state` |
 
 `ConfigManager::begin()` opens all three namespaces read/write and derives the initial API configuration state.
 
@@ -38,6 +39,16 @@ The card JSON document capacity is 2048 bytes. Each entry contains:
 ## Persistence behavior
 
 After a write, `commit()` closes and reopens all three Preferences instances. This means every write briefly affects the availability of all namespaces; callers should not assume concurrent access is safe.
+
+### Tamagotchi epoch baseline
+
+`tamagotchi/state` is a separate versioned record owned by `TamagotchiStateStore`.
+Its `lastUpdatedEpoch` is either a trusted UTC baseline or `0` when no trustworthy
+baseline is available. A future Tamagotchi card session must persist `0` after an
+unsynchronized save rather than retaining an old baseline with already-advanced
+state; this prevents the same current-boot elapsed time from being replayed after
+a reset. Only a valid epoch sampled through `ClockService` may establish a new
+baseline.
 
 Configuration events:
 

@@ -24,7 +24,7 @@ Every release build must fit within one `0x1F0000`-byte application slot. There 
 
 The worker:
 
-1. Synchronizes UTC time against `pool.ntp.org` and `time.nist.gov`, with an approximately ten-second limit.
+1. Asks the boot-lifetime `ClockService` to ensure a valid UTC epoch, waiting no more than approximately ten seconds. `ClockService` is the sole SNTP/configuration owner and normally begins synchronization asynchronously after `WIFI_CONNECTED`.
 2. Requests `https://api.github.com/repos/PostHog/DeskHog/releases` using the embedded root CA.
 3. Parses the first release in the returned array.
 4. Reads `tag_name`, release notes, and the asset named `firmware.bin`.

@@ -11,15 +11,16 @@ Arduino calls `setup()` once. The firmware then:
 3. Logs the partition table.
 4. Initializes `SystemController` and shared fonts/styles.
 5. Creates and starts the `EventQueue`.
-6. Creates `NeoPixelController` and `ConfigManager`.
-7. Creates `PostHogClient`.
-8. Creates `DisplayInterface`, initializes the ST7789, and starts LVGL.
-9. Creates `WiFiInterface` and registers Wi-Fi event handling.
-10. Configures the three physical buttons and GPIO light-sleep wake sources.
-11. Creates `CardController`, its UI callback queue, the card stack, and configured cards.
-12. Creates `OtaManager` and `CaptivePortal`, performs the portal startup described in [Captive portal](captive-portal.md), and starts the HTTP server.
-13. Starts the long-running tasks listed below.
-14. Publishes the initial Wi-Fi credential event and marks the system ready.
+6. Creates the boot-lifetime `ClockService`, which subscribes to `WIFI_CONNECTED` before Wi-Fi starts.
+7. Creates `NeoPixelController` and `ConfigManager`.
+8. Creates `PostHogClient`.
+9. Creates `DisplayInterface`, initializes the ST7789, and starts LVGL.
+10. Creates `WiFiInterface` and registers Wi-Fi event handling.
+11. Configures the three physical buttons and GPIO light-sleep wake sources.
+12. Creates `CardController`, its UI callback queue, the card stack, and configured cards.
+13. Creates `OtaManager` and `CaptivePortal`, performs the portal startup described in [Captive portal](captive-portal.md), and starts the HTTP server.
+14. Starts the long-running tasks listed below.
+15. Publishes the initial Wi-Fi credential event and marks the system ready.
 
 The Arduino `loop()` immediately deletes its own task; ongoing work belongs to FreeRTOS tasks.
 
@@ -34,7 +35,7 @@ The Arduino `loop()` immediately deletes its own task; ongoing work belongs to F
 | `lv_tick_task` | 1 | 1 | 2048 | 10 ms | Advances LVGL time with `lv_tick_inc()` |
 | `lvglTask` | 1 | 2 | 8192 | 5 ms | Runs LVGL timers, drains the UI callback queue, updates the active card, and polls buttons every 50 ms |
 | `EventQueueTask` | Unpinned | idle + 1 | 4096 | Event-driven, 100 ms receive timeout | Delivers domain events to all subscribers |
-| `otaCheckTask` | 0 | 1 | 8192 | On demand | NTP sync and GitHub release check |
+| `otaCheckTask` | 0 | 1 | 8192 | On demand | Bounded wait for shared network time, then GitHub release check |
 | `otaUpdateTask` | 0 | 2 | 12288 | On demand | Firmware download, inactive-partition write, and restart |
 
 ESPAsyncWebServer also invokes HTTP callbacks in its networking context. Route handlers should respond quickly and enqueue slow work for `portalTask`.
@@ -46,6 +47,7 @@ ESPAsyncWebServer also invokes HTTP callbacks in its networking context. Route h
 - `portalTask` currently runs on core 1, but it is not the LVGL task and must not directly render UI.
 - The active card's `update()` method runs from `CardController::processUIQueue()` in `lvglTask`.
 - Long network operations belong on the insight, portal, or OTA workers, not in input handling or rendering.
+- `ClockService` starts SNTP asynchronously in its short `WIFI_CONNECTED` subscriber. It owns no task and never accesses LVGL, NVS, cards, or OTA state; OTA and future cards only sample its epoch/status API.
 
 ## Main data flows
 

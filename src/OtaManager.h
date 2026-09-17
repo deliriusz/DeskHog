@@ -8,13 +8,10 @@
 // FreeRTOS for task management
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "time.h" // Added for NTP
-
 // Add these includes for FreeRTOS mutex
 #include <freertos/semphr.h>
 
-// Forward declarations if needed, e.g., if using WiFiClientSecure pointer
-// class WiFiClientSecure;
+class ClockService;
 
 // Structure to hold information about an available update
 struct UpdateInfo {
@@ -60,7 +57,8 @@ public:
      * @param repoOwner GitHub repository owner (e.g., "PostHog").
      * @param repoName GitHub repository name (e.g., "DeskHog").
      */
-    OtaManager(const String& currentVersion, const String& repoOwner, const String& repoName);
+    OtaManager(const String& currentVersion, const String& repoOwner, const String& repoName,
+               ClockService& clockService);
 
     /**
      * @brief Initiates a check for firmware updates in a non-blocking manner.
@@ -98,6 +96,7 @@ private:
     String _currentVersion;
     String _repoOwner;
     String _repoName;
+    ClockService& _clockService;
     String _firmwareAssetName = "firmware.bin"; // Default asset name
     const char* _githubApiRootCa = \
 "-----BEGIN CERTIFICATE-----\n" \
@@ -155,7 +154,6 @@ private:
     UpdateInfo _lastCheckResult;
     TaskHandle_t _checkTaskHandle;
     TaskHandle_t _updateTaskHandle;
-    bool _timeSynced = false;
 
     SemaphoreHandle_t _dataMutex; // Mutex for _currentStatus and _lastCheckResult
 
@@ -167,7 +165,6 @@ private:
     void _setUpdateStatus(UpdateStatus::State state, const String& message, int progress = -1);
     String _performHttpsRequest(const char* url, const char* rootCa);
     UpdateInfo _parseGithubApiResponse(const String& jsonPayload);
-    bool _ensureTimeSynced(); // Added for NTP
 
     // void _performUpdate(String url); // Function to run in a task
-}; 
+};
