@@ -21,6 +21,12 @@ public:
     void prepareForRemoval() override;
 
 private:
+    enum class TamagotchiInteractionMode : uint8_t {
+        Egg,
+        Normal,
+        ActionSelector
+    };
+
     enum class OfflineCatchUpState : uint8_t {
         PendingClock,
         Applied,
@@ -85,6 +91,7 @@ private:
     void renderStatus(const TamagotchiState& state);
     void updateNeedBar(uint8_t index, uint8_t value);
     void expireTimedUi(uint32_t nowMillis);
+    void expireTransientResult(uint32_t nowMillis);
 
     PetVisual steadyVisual() const;
     void setVisual(PetVisual requested, uint32_t nowMillis);
@@ -94,8 +101,15 @@ private:
     void startEvolutionVisual(uint32_t nowMillis);
 
     void startActionVisual(TamagotchiAction action, uint32_t nowMillis);
+    void setInteractionMode(TamagotchiInteractionMode mode);
+    void moveSelection(int8_t direction);
+    void executeSelectedAction(uint32_t nowMillis);
+    void requestImmediateSave();
     void setTransientResult(TamagotchiAction action, TamagotchiActionResult result,
                             uint32_t nowMillis);
+    void setTransientResultText(const char* text, uint32_t durationMillis,
+                                uint32_t nowMillis);
+    void renderInteractionUi();
     void renderFooter(bool selectorOpen, TamagotchiAction selectedAction);
 
     TamagotchiStateStore& _stateStore;
@@ -112,9 +126,12 @@ private:
     bool _timeUnknown;
 
     uint32_t _lastModelUpdateMillis;
-    uint32_t _lastAnimationCheckMillis;
     TamagotchiModelChange _pendingRenderChanges;
     TamagotchiStage _stageBeforeLastAdvance;
+
+    TamagotchiInteractionMode _interactionMode;
+    TamagotchiAction _selectedAction;
+    bool _immediateSaveRequested;
 
     PetVisual _currentVisual;
     PetVisual _oneShotVisual;
