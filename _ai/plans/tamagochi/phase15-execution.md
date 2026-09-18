@@ -5,8 +5,7 @@
 The font-generation remediation is implemented and verified. The release
 decision remains `BLOCKED`: no designated Feather, fixtures, or authorized
 hardware evidence was available for H01--H13. The generator gate is green, but
-the current source changes are not committed and clean firmware images retain
-an explained build-time timestamp difference.
+the clean firmware images retain an explained build-time timestamp difference.
 
 The supplied plan is named `phase15-remediation-plan.md` but its heading says
 Phase 14. This record treats it as Phase 15 remediation of the Phase 14
@@ -14,11 +13,9 @@ findings.
 
 ## Source identity and environment
 
-- Repository `HEAD`: `9ef798c574f87e98e50bb5caf2847e1b9c28302f`
-- Working-tree changes: `.gitignore`, `docs/assets.md`, `ttf2c.py`,
-  `tools/test_ttf2c.py`, and this execution record; staged phase records
-  `phase13-execution.md` and `phase15-remediation-plan.md` are also present in
-  the checkout.
+- Repository `HEAD`: `7ad87998ca6bcbbdfad33f1c5f1989c99ddb07ae`
+- The remediation and its execution record are committed on `main`; the
+  working tree is clean.
 - PlatformIO Core: 6.2.0
 - Platform: Espressif 32 54.3.20
 - Arduino framework: 3.2.0
@@ -108,8 +105,9 @@ as part of the font remediation.
 
 The historical Phase 13 and Phase 14 hashes therefore remain historical
 evidence. The current clean-build candidates supersede them for the current
-checkout, but neither is a committed release artifact until the source change
-is committed and a maintainer selects the build metadata policy.
+checkout. The latest candidate is tied to the committed source, but a
+maintainer must still select the exact artifact hash and accept the documented
+build metadata policy before release.
 
 ## Feather validation status
 
@@ -142,5 +140,5 @@ deep-sleep, or OTA operation was performed.
 - H01--H13: `BLOCKED`.
 - Overall release: `BLOCKED`, not `PASS`.
 
-Before release, commit the final source changes, select one exact artifact
-hash, and execute H01--H13 against that hash with redacted evidence.
+Before release, select one exact artifact hash and execute H01--H13 against
+that hash with redacted evidence.
