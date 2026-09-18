@@ -39,6 +39,13 @@ No separate portal-size budget is currently enforced. Use final firmware size an
 
 The script requires Node.js/npm and runs `npm install --no-save lv_font_conv`. A missing npm installation fails font generation and therefore the build.
 
+When PlatformIO imports `ttf2c.py`, it uses PlatformIO's project directory; a
+direct invocation uses the directory containing the script. All four required
+font inputs are checked before conversion, and a missing input or failed
+conversion exits non-zero instead of allowing stale generated C files to be
+compiled. A successful run prints `Successfully processed 4 of 4 fonts` and
+`All fonts were successfully converted to LVGL format!`.
+
 ## Sprites
 
 `png2c.py` recursively reads `raw-png/**/*.png`, converts each image to RGBA, and writes BGRA bytes for LVGL `ARGB8888` descriptors. It groups images by the first subdirectory under `raw-png/` and creates an ordered pointer array such as:
