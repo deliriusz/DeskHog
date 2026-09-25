@@ -72,7 +72,9 @@ The `portal` fields are unreliable with several queued actions: a new request ov
 
 `GET` and `POST /api/cards/configured` exchange arrays containing `type`, `config`, `order`, and `name`. A successful save publishes `CARD_CONFIG_CHANGED`, causing `CardController` to rebuild configurable cards.
 
-The POST body must be one complete JSON value and no larger than 2048 bytes. It is assembled by contiguous offsets before parsing, so chunked requests receive the same validation as single-chunk requests; trailing bytes after the array are rejected. The root must be an array of at most 16 objects. Every object requires an exact, registered `type` string and an integer `order`; orders must be the contiguous permutation `0..N-1`. Optional `config` and `name` default to empty strings, must be strings of at most 64 bytes when supplied, and `config` must be nonempty/non-whitespace only for definitions that request it. No-config cards, including `TAMAGOTCHI`, require an empty config value.
+The POST body must be one complete JSON value and no larger than 2048 bytes. It is assembled by contiguous offsets before parsing, so chunked requests receive the same validation as single-chunk requests; trailing bytes after the array are rejected. The shared mutable-array parser validates the untouched envelope before ArduinoJson's zero-copy parse mutates the request buffer. All current and future card types use this same path.
+
+The root must be an array of at most 16 objects. Every object requires an exact, registered `type` string and an integer `order`; orders must be the contiguous permutation `0..N-1`. Optional `config` and `name` default to empty strings, must be strings of at most 64 bytes when supplied, and `config` must be nonempty/non-whitespace only for definitions that request it. No-config cards, including `TAMAGOTCHI`, require an empty config value.
 
 Singleton policy comes from each registered definition's `allowMultiple` value. A second singleton entry rejects the entire request before NVS is touched; repeatable cards remain allowed. Unknown type strings are never treated as insights.
 

@@ -925,18 +925,14 @@ void CaptivePortal::handleSaveConfiguredCards(AsyncWebServerRequest *request) {
     }
 
     DynamicJsonDocument document(ConfigManager::CARD_CONFIG_JSON_CAPACITY_BYTES);
-    const DeserializationError parseError = deserializeJson(
+    const JsonArrayParseResult parseResult = parseMutableJsonArray(
         document, body->buffer, body->expected);
-    if (parseError || document.overflowed()) {
+    if (parseResult == JsonArrayParseResult::InvalidJson) {
         fail(400, "Invalid JSON format", "invalid_json");
         return;
     }
-    if (!document.is<JsonArray>()) {
+    if (parseResult == JsonArrayParseResult::InvalidRoot) {
         fail(400, "Card configuration must be an array", "invalid_root");
-        return;
-    }
-    if (!isSingleJsonArray(body->buffer, body->expected)) {
-        fail(400, "Invalid JSON format", "invalid_json");
         return;
     }
 

@@ -1,7 +1,14 @@
 #pragma once
 
+#include <ArduinoJson.h>
 #include <cstddef>
 #include <cstdint>
+
+enum class JsonArrayParseResult : uint8_t {
+    Success,
+    InvalidJson,
+    InvalidRoot
+};
 
 inline bool isJsonEnvelopeWhitespace(char character) {
     return character == ' ' || character == '\t' || character == '\r' || character == '\n';
@@ -77,4 +84,31 @@ inline bool isSingleJsonArray(const uint8_t* data, size_t length) {
     }
 
     return true;
+}
+
+/**
+ * @brief Safely parses a JSON array from a mutable zero-copy buffer.
+ *
+ * ArduinoJson mutates mutable input while parsing. Capture the envelope result
+ * first so trailing-data validation always examines the original request bytes.
+ */
+inline JsonArrayParseResult parseMutableJsonArray(
+    DynamicJsonDocument& document,
+    uint8_t* data,
+    size_t length
+) {
+    const bool hasValidEnvelope = isSingleJsonArray(data, length);
+    const DeserializationError error = deserializeJson(document, data, length);
+
+    if (error || document.overflowed()) {
+        return JsonArrayParseResult::InvalidJson;
+    }
+    if (!document.is<JsonArray>()) {
+        return JsonArrayParseResult::InvalidRoot;
+    }
+    if (!hasValidEnvelope) {
+        return JsonArrayParseResult::InvalidJson;
+    }
+
+    return JsonArrayParseResult::Success;
 }

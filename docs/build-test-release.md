@@ -52,6 +52,13 @@ Do not report that tests passed unless you first configure and run an actual tes
 
 Parser and pure game-model code are candidates for a future native test environment, but Arduino/LVGL dependencies need to be isolated or stubbed deliberately.
 
+The mutable card-request JSON boundary has a focused host regression that uses
+the ArduinoJson dependency installed by the firmware build:
+
+```sh
+python3 tools/test_json_envelope.py
+```
+
 ## Hardware validation matrix
 
 For UI/card changes:

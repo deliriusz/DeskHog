@@ -69,8 +69,8 @@ The flash partition table is documented in [OTA updates](ota.md). Review it befo
 
 To enter the serial bootloader:
 
-1. Hold down/BOOT.
+1. Hold down/BOOT(D0).
 2. Press reset.
-3. Release down/BOOT.
+3. Release down/BOOT(D0).
 
 PlatformIO recovery commands and their effects on persisted configuration are documented in [Build, test, and release](build-test-release.md#flash-and-recovery).

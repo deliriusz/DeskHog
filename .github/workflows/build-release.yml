@@ -66,6 +66,9 @@ jobs:
           echo "ERROR: firmware.bin was not generated!"
           exit 1
         fi
+
+    - name: Test mutable JSON request parsing
+      run: python tools/test_json_envelope.py
     
     - name: Prepare release files
       run: |
